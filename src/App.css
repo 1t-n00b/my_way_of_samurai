@@ -1,0 +1,17 @@
+
+
+
+.app-wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-areas:
+"header header  "
+"nav content ";
+    grid-template-rows: 100px minmax(500px, 1fr);
+    grid-template-columns: 200px 1fr;
+    grid-gap: 10px;
+    margin: 0 100px 10px 100px;
+
+}
+
+
