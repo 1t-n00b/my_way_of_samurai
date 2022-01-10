@@ -1,13 +1,18 @@
 import React from "react";
 import p from "./Post.module.css"
+type PostPropsType = {
+    message : string
+}
 
-function Post() {
+function Post(props : PostPropsType) {
+   // console.log(props.message)
     return (
 
         <div className={p.item}>
             <img src="https://futurecon.live/wp-content/uploads/2021/12/Avatar-2-jfnmQ2r-.jpg" alt=""/>
-            Post1
-            <span>Like</span>
+            {props.message}
+
+
             <div>
                 <span>Like</span>
             </div>

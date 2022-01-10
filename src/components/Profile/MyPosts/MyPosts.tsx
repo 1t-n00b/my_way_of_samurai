@@ -7,11 +7,12 @@ function MyPosts() {
         <div>
             My posts
             <div>
-                <textarea></textarea>
+                {/*<textarea></textarea>*/}
                 <button>Add post</button>
             </div>
             <div className={p.posts}>
-                <Post/>
+                <Post message="aaaa"/>
+                <Post message='123456'/>
             </div>
         </div>
     )
