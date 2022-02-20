@@ -1,9 +1,10 @@
 import React from "react";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/Posts/ProfileInfo/ProfileInfo";
+import {PostsType} from "../../App";
 
-import userPost from "./userPost";
-import {DialogType, MessageType, PostsType} from "../../App";
+
+
 
 type ProfileType = {
     state: {

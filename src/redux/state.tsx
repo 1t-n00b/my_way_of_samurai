@@ -19,7 +19,7 @@
 //     {id: 5, message: 'Yo'}
 // ]
 
-import {DialogType, MessageType, PostsType} from "../App";
+
 
 // export type stateType = {
 //     profilePage : {
@@ -53,6 +53,14 @@ let state   = {
             {id: 4, message: 'Yo'},
             {id: 5, message: 'Yo'}
         ],
+
+    },
+    sidebar : {
+        friends : [
+            {id: 1, firstName : "Ios", secondName : "Githler", ava: "https://topwar.ru/uploads/posts/2018-12/1545760508_1545760524.jpg"},
+            {id: 2, firstName: "Asic", secondName: "Stalin", ava: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReK11Sm91LXw7VBMWEVA5_-dCgiU3cDUY9ap0RT5oEvAg0X8nrX_fbSMfON3jaGdKjbW0&usqp=CAU"},
+            {id: 3, firstName: "Musol", secondName: "Stalin", ava: "https://biographe.ru/wp-content/uploads/2021/10/3423423-2.jpg"}
+        ]
     }
 
 

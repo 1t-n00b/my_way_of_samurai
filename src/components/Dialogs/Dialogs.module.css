@@ -3,11 +3,11 @@
     grid-template-columns: 2fr 10fr;
 }
 .dialogs_items{
-padding: 10px;
+    padding: 10px;
 }
 
 .dialogs_items .active {
-      color: gold;
+    color: gold;
 }
 
 .dialog {
