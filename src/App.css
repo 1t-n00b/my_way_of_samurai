@@ -1,21 +1,23 @@
 
-
-
 .app-wrapper {
+    width: 70%;
     height: 100%;
     display: grid;
     grid-template-areas:
 "header header  "
 "nav content ";
-    grid-template-rows: 100px minmax(500px, 1fr);
-    grid-template-columns: 200px 1fr;
+    grid-template-rows: 70px minmax(500px, 1fr);
+    grid-template-columns: 300px 1fr;
+    margin: 0 auto;
+    grid-gap: 20px;
 
-    margin: 0 100px 10px 100px;
 }
 
 .app-wrapper-content {
     grid-area: content;
-    background-color: gray;
+
+
 }
+
 
 

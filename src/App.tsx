@@ -20,15 +20,26 @@ export type PostsType = {
     message: string
     likesCount: number
 }
+export type FriendType = {
+    id: number
+    firstName: string
+    secondName: string
+    ava : string
+
+}
+
 
 type AppType = {
     state: {
-        profilePage : {
-            posts : Array<PostsType>
-    },
-        dialogsPage : {
-            dialogs : Array<DialogType>
-            messages : Array<MessageType>
+        profilePage: {
+            posts: Array<PostsType>
+        },
+        dialogsPage: {
+            dialogs: Array<DialogType>
+            messages: Array<MessageType>
+        },
+        sidebar: {
+            friends: Array<FriendType>
         }
 
     }
@@ -40,16 +51,16 @@ function App(props: AppType) {
             <BrowserRouter>
                 <div className='app-wrapper'>
                     <Header/>
-                    <NavBar/>
+                    <NavBar state={props.state.sidebar}/>
                     <div className='app-wrapper-content'>
                         <Routes>
                             <Route path='/dialogs/*'
-                                   element={<Dialogs /*dialogs={props.state.dialogsPage.dialogs}
-                                                     messages={props.state.dialogsPage.messages}*/
-                                   state ={props.state.dialogsPage}/>}/>
+                                   element={<Dialogs
+                                       state={props.state.dialogsPage}/>}/>
                             <Route path='/profiles' element={<Profile state={props.state.profilePage}/>}/>
                         </Routes>
                     </div>
+
                 </div>
             </BrowserRouter>)
         </div>

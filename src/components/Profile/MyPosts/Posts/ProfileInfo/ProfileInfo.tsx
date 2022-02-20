@@ -4,7 +4,7 @@ function ProfileInfo() {
     return (
         <div >
             <div>
-                <img src="https://cs8.pikabu.ru/post_img/big/2017/12/14/6/151324247811505263.jpg" alt=""/>
+                <img className={s.prof_img} src="https://www.watchthetitles.com/app/uploads/2009/11/Community-titles-title-sequence-1920x720.jpg    " alt=""/>
             </div>
             <div className={s.description_block}>
                 Ava + description

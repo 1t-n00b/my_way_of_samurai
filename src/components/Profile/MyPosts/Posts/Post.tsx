@@ -11,8 +11,8 @@ function Post(props : PostPropsType) {
     return (
 
         <div className={p.item}>
-            <img src="https://futurecon.live/wp-content/uploads/2021/12/Avatar-2-jfnmQ2r-.jpg" alt=""/>
-            {props.message}
+            <img src="https://i.gifer.com/origin/81/8150b6cfc8b1d30c274747580ef161f2_w200.gif" alt=""/>
+            <div>{props.message}</div>
 
 
             <div>
