@@ -31,6 +31,7 @@
 //     }
 // }
 import {PostsType} from "../App";
+import {renderPage} from "../render";
 
 let state   = {
     profilePage : {
@@ -74,6 +75,7 @@ export const addPost = (somePost: string) => {
   let newPost:PostsType = {id:5, message:somePost,likesCount:5}
     state.profilePage.posts.push(newPost)
     console.log(state.profilePage.posts.length)
+    renderPage(state)
 
 }
 export default state

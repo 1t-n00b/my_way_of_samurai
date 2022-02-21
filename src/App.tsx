@@ -29,7 +29,7 @@ export type FriendType = {
 }
 
 
-type AppType = {
+export type AppType = {
     state: {
         profilePage: {
             posts: Array<PostsType>
