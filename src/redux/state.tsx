@@ -30,10 +30,16 @@
 //         messages: Array<MessageType>,
 //     }
 // }
-import {PostsType} from "../App";
+import {DialogType, FriendType, MessageType, PostsType} from "../App";
 import {renderPage} from "../render";
 
-let state   = {
+ export type RootStateType = {
+    profilePage: {posts: Array<PostsType>, newPostText: string }
+    dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType> }
+    sidebar: {friends: Array<FriendType>}
+}
+
+let state :RootStateType  = {
     profilePage : {
         posts : [
             {id: 1, message: 'how are u', likesCount: 12},
