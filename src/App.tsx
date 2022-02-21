@@ -4,6 +4,7 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs"
 import { Route, Routes} from 'react-router-dom';
 import './App.css';
+import {updateNewPostText} from "./redux/state";
 
 
 
@@ -33,6 +34,7 @@ export type AppType = {
     state: {
         profilePage: {
             posts: Array<PostsType>
+            newPostText: string
         },
         dialogsPage: {
             dialogs: Array<DialogType>
@@ -44,6 +46,7 @@ export type AppType = {
 
     },
     addPost: (somePost: string) => void
+    updateNewPostText:(newText:string) => void
 
 
 }
@@ -63,8 +66,10 @@ function App(props: AppType) {
                                element={<Dialogs
                                    state={props.state.dialogsPage}/>}/>
                         <Route path='/profiles' element={<Profile
-                            state={props.state.profilePage}
+                            profilePage={props.state.profilePage}
                             addPost={props.addPost}
+
+                            updateNewPostText={props.updateNewPostText}
                         />}/>
                     </Routes>
                 </div>

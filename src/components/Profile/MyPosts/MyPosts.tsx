@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import p from "./MyPosts.module.css"
 import Post from "./Posts/Post";
 
@@ -10,6 +10,9 @@ import {PostsType} from "../../../App";
 type MyPostsType = {
    post : Array<PostsType>
     addPost: (somePost: string) => void
+    newPostText: string
+    updateNewPostText:(newText:string) =>void
+
 }
 
 function MyPosts( props : MyPostsType) {
@@ -21,7 +24,13 @@ function MyPosts( props : MyPostsType) {
     const addPost = () => {
         const text = newPostElement.current!.value
       props.addPost(text)
-        newPostElement.current!.value = ""
+       // props.updateNewPostText('')
+    }
+    const onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+            let text = newPostElement.current!.value
+        props.updateNewPostText(text)
+
+
     }
 
     return (
@@ -29,7 +38,7 @@ function MyPosts( props : MyPostsType) {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea  ref={newPostElement} > </textarea></div>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/></div>
                 <div>
                     <button onClick={addPost}>Add post</button>
                 </div>

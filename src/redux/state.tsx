@@ -39,7 +39,8 @@ let state   = {
             {id: 1, message: 'how are u', likesCount: 12},
             {id: 2, message: 'first post', likesCount: 2}
 
-        ]
+        ],
+        newPostText :"it-cAAm"
     },
     dialogsPage : {
         dialogs: [
@@ -71,11 +72,20 @@ let state   = {
 
 }
 
-export const addPost = (somePost: string) => {
-  let newPost:PostsType = {id:5, message:somePost,likesCount:5}
+export const addPost = () => {
+  let newPost:PostsType = {id:5, message:state.profilePage.newPostText,likesCount:5}
     state.profilePage.posts.push(newPost)
-    console.log(state.profilePage.posts.length)
+    state.profilePage.newPostText = ''
     renderPage(state)
 
 }
+
+export const updateNewPostText = (newText: string) => {
+
+    state.profilePage.newPostText = newText
+
+    renderPage(state)
+
+}
+
 export default state

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-import state, {addPost} from "./redux/state";
+import state, {addPost, updateNewPostText} from "./redux/state";
 
 /*let us1 = new userPost(1, "Hi 45", 45);
 let us2 = new userPost(1, "Hello 77777777", 60);
@@ -25,7 +25,7 @@ let messages = [
   {id: 5, message: 'Yo'}
 ]*/
 test('renders learn react link', () => {
-  render(   <App state={state} addPost={addPost} />);
+  render(   <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>);
 
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
