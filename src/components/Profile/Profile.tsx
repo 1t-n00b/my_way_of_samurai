@@ -9,7 +9,8 @@ import {PostsType} from "../../App";
 type ProfileType = {
     state: {
         posts : Array<PostsType>
-    }
+    },
+    addPost: (somePost: string) => void
 }
 
 
@@ -20,7 +21,7 @@ function Profile(props : ProfileType) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts post={props.state.posts}/>
+            <MyPosts post={props.state.posts}  addPost={props.addPost}/>
 
         </div>
     )

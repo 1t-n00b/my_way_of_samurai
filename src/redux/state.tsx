@@ -30,6 +30,8 @@
 //         messages: Array<MessageType>,
 //     }
 // }
+import {PostsType} from "../App";
+
 let state   = {
     profilePage : {
         posts : [
@@ -65,6 +67,13 @@ let state   = {
 
 
 
+
+}
+
+export const addPost = (somePost: string) => {
+  let newPost:PostsType = {id:5, message:somePost,likesCount:5}
+    state.profilePage.posts.push(newPost)
+    console.log(state.profilePage.posts.length)
 
 }
 export default state

@@ -2,8 +2,9 @@ import Header from "./components/Header/Header";
 import NavBar from "./components/Navbar/NavBar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs"
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import './App.css';
+
 
 
 export type MessageType = {
@@ -23,7 +24,7 @@ export type FriendType = {
     id: number
     firstName: string
     secondName: string
-    ava : string
+    ava: string
 
 }
 
@@ -41,30 +42,35 @@ type AppType = {
             friends: Array<FriendType>
         }
 
-    }
+    },
+    addPost: (somePost: string) => void
 
 
 }
+
 
 function App(props: AppType) {
 
     return (
         <div>
-            <BrowserRouter>
-                <div className='app-wrapper'>
-                    <Header/>
-                    <NavBar state={props.state.sidebar}/>
-                    <div className='app-wrapper-content'>
-                        <Routes>
-                            <Route path='/dialogs/*'
-                                   element={<Dialogs
-                                       state={props.state.dialogsPage}/>}/>
-                            <Route path='/profiles' element={<Profile state={props.state.profilePage}/>}/>
-                        </Routes>
-                    </div>
 
+            <div className='app-wrapper'>
+                <Header/>
+                <NavBar state={props.state.sidebar}/>
+                <div className='app-wrapper-content'>
+                    <Routes>
+                        <Route path='/dialogs/*'
+                               element={<Dialogs
+                                   state={props.state.dialogsPage}/>}/>
+                        <Route path='/profiles' element={<Profile
+                            state={props.state.profilePage}
+                            addPost={props.addPost}
+                        />}/>
+                    </Routes>
                 </div>
-            </BrowserRouter>)
+
+            </div>
+
         </div>
     );
 }
