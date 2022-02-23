@@ -27,6 +27,7 @@ function MyPosts( props : MyPostsType) {
         // props.updateNewPostText('')
     }
     const onPostChange = () => {
+
             let text = newPostElement.current!.value
         props.updateNewPostText(text)
 

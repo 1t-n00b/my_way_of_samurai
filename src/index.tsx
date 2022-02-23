@@ -2,19 +2,19 @@ import ReactDOM from "react-dom";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import state, {addPost, RootStateType, subscribe, updateNewPostText} from "./redux/state";
+import store , { RootStateType } from "./redux/state";
 
 
 export const renderPage = (state: RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
+            <App state={state} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>
         </BrowserRouter>, document.getElementById('root')
     );
 }
-renderPage(state);
+renderPage(store.getState());
 
-subscribe(renderPage)
+store.subscribe(renderPage)
 
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,7 +1,6 @@
 .nav {
     grid-area: nav;
     background-color: #fff;
-    padding: 20px;
     border-radius: 20px;
     color: #33363c;
     height: 600px;
