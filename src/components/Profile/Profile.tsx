@@ -2,6 +2,7 @@ import React from "react";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/Posts/ProfileInfo/ProfileInfo";
 import {PostsType} from "../../App";
+import {ActionsTypes} from "../../redux/state";
 
 
 type ProfileType = {
@@ -9,8 +10,9 @@ type ProfileType = {
         posts: Array<PostsType>
         newPostText: string
     },
-    addPost: (somePost: string) => void
-    updateNewPostText: (newText: string) => void
+   // addPost: (somePost: string) => void
+  //  updateNewPostText: (newText: string) => void
+    dispatch:  (action: ActionsTypes) => void
 }
 
 
@@ -22,8 +24,9 @@ function Profile(props: ProfileType) {
             <ProfileInfo/>
             <MyPosts post={props.profilePage.posts}
                      newPostText={props.profilePage.newPostText}
-                     addPost={props.addPost}
-                     updateNewPostText={props.updateNewPostText}
+                     // addPost={props.addPost}
+                     // updateNewPostText={props.updateNewPostText}
+                     dispatch={props.dispatch}
             />
 
         </div>

@@ -3,34 +3,33 @@ import p from "./MyPosts.module.css"
 import Post from "./Posts/Post";
 
 import {PostsType} from "../../../App";
-
-
-
+import {ActionsTypes} from "../../../redux/state";
 
 type MyPostsType = {
-   post : Array<PostsType>
-    addPost: (somePost: string) => void
+    post: Array<PostsType>
+  //  addPost: (somePost: string) => void
     newPostText: string
-    updateNewPostText:(newText:string) =>void
+   // updateNewPostText: (newText: string) => void
+    dispatch:  (action: ActionsTypes)  => void
 
 }
 
-function MyPosts( props : MyPostsType) {
+function MyPosts(props: MyPostsType) {
 
-    let postsElement = props.post.map( props =>    <Post message={props.message} likeCount = {props.likesCount}/>)
+    let postsElement = props.post.map(props => <Post message={props.message} likeCount={props.likesCount}/>)
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
         const text = newPostElement.current!.value
-      props.addPost(text)
+
+        props.dispatch({type: "ADD-POST", newPostText: text});
         // props.updateNewPostText('')
     }
     const onPostChange = () => {
 
-            let text = newPostElement.current!.value
-        props.updateNewPostText(text)
-
+        let text = newPostElement.current!.value
+        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
 
     }
 
@@ -46,7 +45,7 @@ function MyPosts( props : MyPostsType) {
             </div>
             <div className={p.posts}>
                 {postsElement}
-               {/* <Post message={posts[0].message } likeCount = {posts[0].likesCount}/>
+                {/* <Post message={posts[0].message } likeCount = {posts[0].likesCount}/>
                 <Post message={posts[1].message } likeCount = {posts[1].likesCount}/>*/}
 
             </div>

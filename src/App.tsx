@@ -2,9 +2,9 @@ import Header from "./components/Header/Header";
 import NavBar from "./components/Navbar/NavBar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs"
-import {Route, Routes} from 'react-router-dom';
-import './App.css';
-
+import {Route, Routes} from "react-router-dom";
+import "./App.css";
+import store, {ActionsTypes} from "./redux/state";
 
 export type MessageType = {
     id: number
@@ -27,7 +27,6 @@ export type FriendType = {
 
 }
 
-
 export type AppType = {
     state: {
         profilePage: {
@@ -43,31 +42,30 @@ export type AppType = {
         }
 
     },
-    addPost: (somePost: string) => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 
+   // addPost: (somePost: string) => void
+  //  updateNewPostText: (newText: string) => void
 
 }
-
 
 function App(props: AppType) {
 
     return (
         <div>
 
-            <div className='app-wrapper'>
+            <div className="app-wrapper">
                 <Header/>
                 <NavBar state={props.state.sidebar}/>
-                <div className='app-wrapper-content'>
+                <div className="app-wrapper-content">
                     <Routes>
-                        <Route path='/dialogs/*'
+                        <Route path="/dialogs/*"
                                element={<Dialogs
                                    state={props.state.dialogsPage}/>}/>
-                        <Route path='/profiles' element={<Profile
+                        <Route path="/profiles" element={<Profile
                             profilePage={props.state.profilePage}
-                            addPost={props.addPost}
+                            dispatch={props.dispatch.bind(props.state)}
 
-                            updateNewPostText={props.updateNewPostText}
                         />}/>
                     </Routes>
                 </div>
