@@ -1,4 +1,7 @@
 import {DialogType, FriendType, MessageType, PostsType} from "../App";
+
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 export type StoreType ={
     _state: RootStateType,
     dispatch: (action: ActionsTypes) => void
@@ -112,6 +115,22 @@ export type RootStateType = {
     profilePage: { posts: Array<PostsType>, newPostText: string }
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType> }
     sidebar: { friends: Array<FriendType> }
+}
+
+export const addPostAC = (newPostText:string): AddPostActionType => {
+
+    return {
+      type: ADD_POST,
+      newPostText: newPostText
+  }
+}
+export const changeNewTextAC = (newText:string): ChangeNewTextActionType => {
+
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: newText
+
+    }
 }
 
 

@@ -3,7 +3,7 @@ import p from "./MyPosts.module.css"
 import Post from "./Posts/Post";
 
 import {PostsType} from "../../../App";
-import {ActionsTypes} from "../../../redux/state";
+import {ActionsTypes, addPostAC, changeNewTextAC} from "../../../redux/state";
 
 type MyPostsType = {
     post: Array<PostsType>
@@ -23,13 +23,14 @@ function MyPosts(props: MyPostsType) {
     const addPost = () => {
         const text = newPostElement.current!.value
 
-        props.dispatch({type: "ADD-POST", newPostText: text});
+      //  props.dispatch({type: "ADD-POST", newPostText: text});
         // props.updateNewPostText('')
+        props.dispatch(addPostAC(text))
     }
     const onPostChange = () => {
 
         let text = newPostElement.current!.value
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
+        props.dispatch(changeNewTextAC(text))
 
     }
 
