@@ -1,14 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
-
-
-import store from "./redux/state";
 import React from "react";
-import state from "./redux/state";
-
+import App from "./App";
+import store from "./redux/state";
 
 test('renders learn react link', () => {
  // render(   <App state={store.getState()} addPost={store.addPost} updateNewPostText={store.updateNewPostText}/>);
+ render(    <App store={store} dispatch={store.dispatch.bind(store)} />);
 
 
   const linkElement = screen.getByText(/learn react/i);

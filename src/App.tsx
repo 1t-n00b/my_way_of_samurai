@@ -4,7 +4,8 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs"
 import {Route, Routes} from "react-router-dom";
 import "./App.css";
-import store, {ActionsTypes} from "./redux/state";
+import store, {ActionsTypes, StoreType} from "./redux/state";
+import React from "react";
 
 export type MessageType = {
     id: number
@@ -28,43 +29,26 @@ export type FriendType = {
 }
 
 export type AppType = {
-    state: {
-        profilePage: {
-            posts: Array<PostsType>
-            newPostText: string
-        },
-        dialogsPage: {
-            dialogs: Array<DialogType>
-            messages: Array<MessageType>
-        },
-        sidebar: {
-            friends: Array<FriendType>
-        }
-
-    },
+    store: StoreType,
     dispatch: (action: ActionsTypes) => void
-
-   // addPost: (somePost: string) => void
-  //  updateNewPostText: (newText: string) => void
-
 }
 
-function App(props: AppType) {
-
+const App: React.FC<AppType> = (props) => {
+    const state = props.store.getState();
     return (
         <div>
 
             <div className="app-wrapper">
                 <Header/>
-                <NavBar state={props.state.sidebar}/>
+                <NavBar state={state.sidebar}/>
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path="/dialogs/*"
                                element={<Dialogs
-                                   state={props.state.dialogsPage}/>}/>
+                                   state={state.dialogsPage}/>}/>
                         <Route path="/profiles" element={<Profile
-                            profilePage={props.state.profilePage}
-                            dispatch={props.dispatch.bind(props.state)}
+                            profilePage={state.profilePage}
+                            dispatch={store.dispatch.bind(store)}
 
                         />}/>
                     </Routes>

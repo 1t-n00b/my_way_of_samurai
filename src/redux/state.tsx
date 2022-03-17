@@ -7,7 +7,7 @@ export type StoreType ={
     dispatch: (action: ActionsTypes) => void
     _callSubscriber: (_state: RootStateType)=> void
     getState: ()=> RootStateType
-    subscribe: (callback: (state: RootStateType) => void) => void
+    subscribe: (callback: () => void) => void
 }
 type AddPostActionType = {
     type:'ADD-POST',
@@ -78,7 +78,7 @@ export let store: StoreType = {
     },
 
     getState() { return this._state},
-    subscribe (observer: (state: RootStateType) => void) {
+    subscribe (observer: () => void) {
         this._callSubscriber = observer
     },
 
