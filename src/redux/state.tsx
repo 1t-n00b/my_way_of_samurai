@@ -2,51 +2,51 @@ import {DialogType, FriendType, MessageType, PostsType} from "../App";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-export type StoreType ={
+export type StoreType = {
     _state: RootStateType,
     dispatch: (action: ActionsTypes) => void
-    _callSubscriber: (_state: RootStateType)=> void
-    getState: ()=> RootStateType
+    _callSubscriber: (_state: RootStateType) => void
+    getState: () => RootStateType
     subscribe: (callback: () => void) => void
 }
 type AddPostActionType = {
-    type:'ADD-POST',
+    type: "ADD-POST",
     newPostText: string
 
 }
 
 type ChangeNewTextActionType = {
-    type:'UPDATE-NEW-POST-TEXT',
+    type: "UPDATE-NEW-POST-TEXT",
     newText: string,
 
 }
 
-export type ActionsTypes = AddPostActionType|ChangeNewTextActionType
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
 
 export let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
-                {id: 1, message: 'how are u', likesCount: 12},
-                {id: 2, message: 'first post', likesCount: 2}
+                {id: 1, message: "how are u", likesCount: 12},
+                {id: 2, message: "first post", likesCount: 2}
 
             ],
             newPostText: "it-cAAm"
         },
         dialogsPage: {
             dialogs: [
-                {id: 1, name: 'Sergey'},
-                {id: 2, name: 'Ura'},
-                {id: 3, name: 'Sanya'},
-                {id: 4, name: 'Vitalya'},
-                {id: 5, name: 'Bob'}
+                {id: 1, name: "Sergey"},
+                {id: 2, name: "Ura"},
+                {id: 3, name: "Sanya"},
+                {id: 4, name: "Vitalya"},
+                {id: 5, name: "Bob"}
             ],
             messages: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'Hello'},
-                {id: 3, message: 'Yo'},
-                {id: 4, message: 'Yo'},
-                {id: 5, message: 'Yo'}
+                {id: 1, message: "Hi"},
+                {id: 2, message: "Hello"},
+                {id: 3, message: "Yo"},
+                {id: 4, message: "Yo"},
+                {id: 5, message: "Yo"}
             ],
 
         },
@@ -77,8 +77,10 @@ export let store: StoreType = {
     _callSubscriber(_state: RootStateType) {
     },
 
-    getState() { return this._state},
-    subscribe (observer: () => void) {
+    getState() {
+        return this._state
+    },
+    subscribe(observer: () => void) {
         this._callSubscriber = observer
     },
 
@@ -94,16 +96,16 @@ export let store: StoreType = {
     //
     // },
     dispatch(action) {
-        if (action.type==='ADD-POST') {
+        if (action.type === "ADD-POST") {
             let newPost: PostsType = {
                 id: 5,
                 message: action.newPostText,
-                likesCount: 5}
+                likesCount: 5
+            }
             this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
+            this._state.profilePage.newPostText = ""
             this._callSubscriber(this._state)
-        }
-        else if (action.type==='UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
         }
@@ -117,14 +119,14 @@ export type RootStateType = {
     sidebar: { friends: Array<FriendType> }
 }
 
-export const addPostAC = (newPostText:string): AddPostActionType => {
+export const addPostAC = (newPostText: string): AddPostActionType => {
 
     return {
-      type: ADD_POST,
-      newPostText: newPostText
-  }
+        type: ADD_POST,
+        newPostText: newPostText
+    }
 }
-export const changeNewTextAC = (newText:string): ChangeNewTextActionType => {
+export const changeNewTextAC = (newText: string): ChangeNewTextActionType => {
 
     return {
         type: UPDATE_NEW_POST_TEXT,
@@ -132,8 +134,6 @@ export const changeNewTextAC = (newText:string): ChangeNewTextActionType => {
 
     }
 }
-
-
 
 export default store
 
