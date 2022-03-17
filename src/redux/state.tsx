@@ -139,7 +139,6 @@ export let store: StoreType = {
 export type RootStateType = {
     profilePage: { posts: Array<PostsType>, newPostText: string }
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
-
     sidebar: { friends: Array<FriendType> }
 }
 
