@@ -9,8 +9,6 @@ type ProfileType = {
         posts: Array<PostsType>
         newPostText: string
     },
-    // addPost: (somePost: string) => void
-    //  updateNewPostText: (newText: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 
