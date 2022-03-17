@@ -45,7 +45,7 @@ const App: React.FC<AppType> = (props) => {
                     <Routes>
                         <Route path="/dialogs/*"
                                element={<Dialogs
-                                   state={state.dialogsPage}/>}/>
+                                   state={state.dialogsPage} dispatch={store.dispatch.bind(store)}/>}/>
                         <Route path="/profiles" element={<Profile
                             profilePage={state.profilePage}
                             dispatch={store.dispatch.bind(store)}
