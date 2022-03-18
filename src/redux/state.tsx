@@ -1,9 +1,9 @@
 import {DialogType, FriendType, MessageType, PostsType} from "../App";
+import profileReducer from "./profile_reducer";
+import dialogs_reducer from "./dialogs_reducer";
+import sidebarReducer from "./sidebar_reducer";
 
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
-const SEND_MESSAGE = "SEND_MESSAGE";
+
 
 export type StoreType = {
     _state: RootStateType,
@@ -12,24 +12,24 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
 }
-type AddPostActionType = {
+export type AddPostActionType = {
     type: "ADD-POST",
     newPostText: string
 
 }
-type UpdateMessageBody = {
+export type UpdateMessageBody = {
     type: "UPDATE-NEW-MESSAGE-BODY",
     newMessageBody: string
 
 }
 
-type ChangeNewTextActionType = {
+export type ChangeNewTextActionType = {
     type: "UPDATE-NEW-POST-TEXT",
     newText: string,
 
 }
 
-type SEND_MESSAGE = {
+export type SEND_MESSAGE = {
     type: "SEND_MESSAGE",
 }
 
@@ -110,28 +110,32 @@ export let store: StoreType = {
     //
     // },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost: PostsType = {
-                id: 5,
-                message: action.newPostText,
-                likesCount: 5
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ""
-            this._callSubscriber(this._state)
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessageBody = action.newMessageBody
-            this._callSubscriber(this._state)
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogsPage.newMessageBody;
-            this._state.dialogsPage.newMessageBody = "";
-            this._state.dialogsPage.messages.push({id: 6, message: body});
-            this._callSubscriber(this._state)
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogs_reducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
+        // if (action.type === ADD_POST) {
+        //     let newPost: PostsType = {
+        //         id: 5,
+        //         message: action.newPostText,
+        //         likesCount: 5
+        //     }
+        //     this._state.profilePage.posts.push(newPost)
+        //     this._state.profilePage.newPostText = ""
+        //     this._callSubscriber(this._state)
+        // } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        //     this._state.profilePage.newPostText = action.newText
+        //     this._callSubscriber(this._state)
+        // } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+        //     this._state.dialogsPage.newMessageBody = action.newMessageBody
+        //     this._callSubscriber(this._state)
+        // } else if (action.type === SEND_MESSAGE) {
+        //     let body = this._state.dialogsPage.newMessageBody;
+        //     this._state.dialogsPage.newMessageBody = "";
+        //     this._state.dialogsPage.messages.push({id: 6, message: body});
+        //     this._callSubscriber(this._state)
+        // }
+        this._callSubscriber(this._state)
     }
 
 }
@@ -140,37 +144,6 @@ export type RootStateType = {
     profilePage: { posts: Array<PostsType>, newPostText: string }
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
     sidebar: { friends: Array<FriendType> }
-}
-
-export const addPostAC = (newPostText: string): AddPostActionType => {
-
-    return {
-        type: ADD_POST,
-        newPostText: newPostText
-    }
-}
-export const changeNewTextAC = (newText: string): ChangeNewTextActionType => {
-
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-
-    }
-}
-
-export const sendMessageAC = (): SEND_MESSAGE => {
-    return {
-        type: SEND_MESSAGE
-
-    }
-}
-export const updateNewMessageBodyAC = (newMessageBody: string): UpdateMessageBody => {
-
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        newMessageBody: newMessageBody
-
-    }
 }
 
 export default store
