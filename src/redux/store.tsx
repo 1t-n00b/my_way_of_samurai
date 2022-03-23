@@ -3,8 +3,6 @@ import profileReducer from "./profile_reducer";
 import dialogs_reducer from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
 
-
-
 export type StoreType = {
     _state: RootStateType,
     dispatch: (action: ActionsTypes) => void
@@ -30,7 +28,7 @@ export type ChangeNewTextActionType = {
 }
 
 export type SEND_MESSAGE = {
-    type: "SEND_MESSAGE",
+    type: "SEND-MESSAGE",
 }
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateMessageBody | SEND_MESSAGE
@@ -68,21 +66,21 @@ export let store: StoreType = {
             friends: [
                 {
                     id: 1,
-                    firstName: "Ios",
-                    secondName: "Githler",
-                    ava: "https://topwar.ru/uploads/posts/2018-12/1545760508_1545760524.jpg"
+                    firstName: "Ilona",
+                    secondName: "Mask",
+                    ava: "https://avatars.mds.yandex.net/get-zen_doc/1671806/pub_5e422bfaabb5074fff3a4747_5e422c255e0d7416b977d7a7/scale_1200"
                 },
                 {
                     id: 2,
-                    firstName: "Asic",
-                    secondName: "Stalin",
-                    ava: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReK11Sm91LXw7VBMWEVA5_-dCgiU3cDUY9ap0RT5oEvAg0X8nrX_fbSMfON3jaGdKjbW0&usqp=CAU"
+                    firstName: "Pashtet",
+                    secondName: "Durov",
+                    ava: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqGN0cnVY_Af9mV4l1vI6kmjnCBlho78TMuA&usqp=CAU"
                 },
                 {
                     id: 3,
-                    firstName: "Musol",
-                    secondName: "Stalin",
-                    ava: "https://biographe.ru/wp-content/uploads/2021/10/3423423-2.jpg"
+                    firstName: "Cuker",
+                    secondName: "Cuker",
+                    ava: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwvFENTFoaxFujBsq6O0DV9jIas_oPSTcgZ-wM601oc1ufBiVfp5o5G_WdQ0LbsBOloJY&usqp=CAU"
                 }
             ]
         }

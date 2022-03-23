@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 import {MessageType} from "../../App";
 import {DialogType} from "../../App";
 import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs_reducer";
-import {ActionsTypes} from "../../redux/state";
+import {ActionsTypes} from "../../redux/store";
 
 type DialogsType = {
     // dialogs : Array<DialogType>

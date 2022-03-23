@@ -4,8 +4,8 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs"
 import {Route, Routes} from "react-router-dom";
 import "./App.css";
-import store, {ActionsTypes, StoreType} from "./redux/state";
 import React from "react";
+import {ReduxStoreType} from "./redux/redux-store";
 
 export type MessageType = {
     id: number
@@ -29,8 +29,8 @@ export type FriendType = {
 }
 
 export type AppType = {
-    store: StoreType,
-    dispatch: (action: ActionsTypes) => void
+    store: ReduxStoreType,
+    // dispatch: (action: ActionsTypes) => void
 }
 
 const App: React.FC<AppType> = (props) => {
@@ -45,10 +45,10 @@ const App: React.FC<AppType> = (props) => {
                     <Routes>
                         <Route path="/dialogs/*"
                                element={<Dialogs
-                                   state={state.dialogsPage} dispatch={store.dispatch.bind(store)}/>}/>
+                                   state={state.dialogsPage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
                         <Route path="/profiles" element={<Profile
                             profilePage={state.profilePage}
-                            dispatch={store.dispatch.bind(store)}
+                            dispatch={props.store.dispatch.bind(props.store)}
 
                         />}/>
                     </Routes>

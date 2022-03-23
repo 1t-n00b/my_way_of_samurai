@@ -1,15 +1,35 @@
-import {ActionsTypes, SEND_MESSAGE, UpdateMessageBody} from "./state";
-import {DialogType, MessageType} from "../App";
+import {ActionsTypes, SEND_MESSAGE, UpdateMessageBody} from "./store";
+
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
-const SEND_MESSAGE = "SEND_MESSAGE";
-const dialogsReducer = (state: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }, action: ActionsTypes) => {
+const SEND_MESSAGES = "SEND-MESSAGE";
+
+let initialState = {
+    dialogs: [
+        {id: 1, name: "Sergey"},
+        {id: 2, name: "Ura"},
+        {id: 3, name: "Sanya"},
+        {id: 4, name: "Vitalya"},
+        {id: 5, name: "Bob"}
+    ],
+    messages: [
+        {id: 1, message: "Hi"},
+        {id: 2, message: "Hello"},
+        {id: 3, message: "Yo"},
+        {id: 4, message: "Yo"},
+        {id: 5, message: "Yo"}
+    ],
+    newMessageBody: "",
+
+}
+
+const dialogsReducer = (state = initialState, action: ActionsTypes) => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageBody = action.newMessageBody
             break;
-        case SEND_MESSAGE:
+        case SEND_MESSAGES:
             let body = state.newMessageBody;
             state.newMessageBody = "";
             state.messages.push({id: 6, message: body});
@@ -20,7 +40,7 @@ const dialogsReducer = (state: { dialogs: Array<DialogType>, messages: Array<Mes
 
 export const sendMessageAC = (): SEND_MESSAGE => {
     return {
-        type: SEND_MESSAGE
+        type: SEND_MESSAGES
 
     }
 }

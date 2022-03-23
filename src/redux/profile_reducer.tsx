@@ -1,9 +1,19 @@
 import {PostsType} from "../App";
-import {ActionsTypes, AddPostActionType, ChangeNewTextActionType} from "./state";
+import {ActionsTypes, AddPostActionType, ChangeNewTextActionType} from "./store";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const profileReducer = (state: { posts: Array<PostsType>, newPostText: string }, action: ActionsTypes) => {
+
+const initialState = {
+    posts: [
+        {id: 1, message: "how are u", likesCount: 12},
+        {id: 2, message: "first post", likesCount: 2}
+
+    ],
+    newPostText: "it-cAAm"
+}
+
+const profileReducer = (state = initialState, action: ActionsTypes) => {
 
     switch (action.type) {
         case ADD_POST:

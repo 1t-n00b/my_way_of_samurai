@@ -4,7 +4,7 @@ import Post from "./Posts/Post";
 
 import {PostsType} from "../../../App";
 import { addPostAC, changeNewTextAC} from "../../../redux/profile_reducer";
-import {ActionsTypes} from "../../../redux/state";
+import {ActionsTypes} from "../../../redux/store";
 
 type MyPostsType = {
     post: Array<PostsType>
