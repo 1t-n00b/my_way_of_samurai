@@ -1,11 +1,12 @@
 import Header from "./components/Header/Header";
 import NavBar from "./components/Navbar/NavBar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs"
+
 import {Route, Routes} from "react-router-dom";
 import "./App.css";
 import React from "react";
 import {ReduxStoreType} from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 export type MessageType = {
     id: number
@@ -44,11 +45,11 @@ const App: React.FC<AppType> = (props) => {
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path="/dialogs/*"
-                               element={<Dialogs
-                                   state={state.dialogsPage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                               element={<DialogsContainer store={props.store}/>}/>
                         <Route path="/profiles" element={<Profile
-                            profilePage={state.profilePage}
-                            dispatch={props.store.dispatch.bind(props.store)}
+                            store={props.store}
+                            // profilePage={state.profilePage}
+                            // dispatch={props.store.dispatch.bind(props.store)}
 
                         />}/>
                     </Routes>

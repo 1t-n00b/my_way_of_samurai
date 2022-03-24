@@ -19,7 +19,7 @@ const profileReducer = (state = initialState, action: ActionsTypes) => {
         case ADD_POST:
             let newPost: PostsType = {
                 id: 5,
-                message: action.newPostText,
+                message: state.newPostText,
                 likesCount: 5
             }
             state.posts.push(newPost)
@@ -32,11 +32,9 @@ const profileReducer = (state = initialState, action: ActionsTypes) => {
     return state
 }
 
-export const addPostAC = (newPostText: string): AddPostActionType => {
-
+export const addPostAC = (): AddPostActionType => {
     return {
-        type: ADD_POST,
-        newPostText: newPostText
+        type: ADD_POST
     }
 }
 export const changeNewTextAC = (newText: string): ChangeNewTextActionType => {

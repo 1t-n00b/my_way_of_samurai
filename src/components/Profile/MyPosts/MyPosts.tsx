@@ -3,15 +3,13 @@ import p from "./MyPosts.module.css"
 import Post from "./Posts/Post";
 
 import {PostsType} from "../../../App";
-import { addPostAC, changeNewTextAC} from "../../../redux/profile_reducer";
-import {ActionsTypes} from "../../../redux/store";
 
 type MyPostsType = {
     post: Array<PostsType>
-  //  addPost: (somePost: string) => void
+    addPost: () => void
     newPostText: string
-   // updateNewPostText: (newText: string) => void
-    dispatch:  (action: ActionsTypes)  => void
+    updateNewPostText: (newText: string) => void
+    // dispatch:  (action: ActionsTypes)  => void
 
 }
 
@@ -22,13 +20,15 @@ function MyPosts(props: MyPostsType) {
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-        const text = newPostElement.current!.value
-        props.dispatch(addPostAC(text))
+        //  const newPostText = newPostElement.current!.value
+        // props.dispatch(addPostAC(text))
+        props.addPost();
     }
     const onPostChange = () => {
-
-        let text = newPostElement.current!.value
-        props.dispatch(changeNewTextAC(text))
+        // let text = newPostElement.current!.value
+        // props.dispatch(changeNewTextAC(text))
+        let newText = newPostElement.current!.value
+        props.updateNewPostText(newText)
 
     }
 
