@@ -1,7 +1,6 @@
 import Header from "./components/Header/Header";
 import NavBar from "./components/Navbar/NavBar";
 import Profile from "./components/Profile/Profile";
-
 import {Route, Routes} from "react-router-dom";
 import "./App.css";
 import React from "react";
