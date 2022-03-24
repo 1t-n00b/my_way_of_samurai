@@ -3,16 +3,16 @@ import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import store from "./redux/redux-store";
-import StoreContext from "./StoreContext";
+import {Provider} from "./StoreContext";
 
 export const renderPage = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App store={store}
                     /* dispatch={store.dispatch.bind(store)}*/
                 />
-            </StoreContext.Provider>
+            </Provider>
 
         </BrowserRouter>, document.getElementById("root")
     );
