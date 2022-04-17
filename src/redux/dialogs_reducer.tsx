@@ -1,4 +1,5 @@
 import {ActionsTypes, SEND_MESSAGE, UpdateMessageBody} from "./store";
+import message from "../components/Dialogs/Message/Message";
 
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
@@ -24,32 +25,29 @@ let initialState = {
 }
 
 const dialogsReducer = (state = initialState, action: ActionsTypes) => {
-
+    let newState = {...state, message:[...state.messages]}
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.newMessageBody
+            newState.newMessageBody = action.newMessageBody
             break;
         case SEND_MESSAGES:
-            let body = state.newMessageBody;
-            state.newMessageBody = "";
-            state.messages.push({id: 6, message: body});
+            let body = newState.newMessageBody;
+            newState.newMessageBody = "";
+            newState.messages = [...state.messages,{id: 6, message: body}];
             break;
     }
-    return state
+    return newState
 }
 
 export const sendMessageAC = (): SEND_MESSAGE => {
     return {
         type: SEND_MESSAGES
-
     }
 }
 export const updateNewMessageBodyAC = (newMessageBody: string): UpdateMessageBody => {
-
     return {
         type: UPDATE_NEW_MESSAGE_BODY,
         newMessageBody: newMessageBody
-
     }
 }
 

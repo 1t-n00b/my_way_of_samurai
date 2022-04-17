@@ -1,0 +1,81 @@
+.user_info {
+    display: flex;
+    margin: 15px;
+    padding-left: 50px;
+}
+
+.user_photo {
+    background-color: rgba(177, 183, 201, 0.83);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.left_part {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right_part {
+    margin-left: 50px;
+    background-color: white;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: solid #33363c 2px;
+}
+
+.btn button {
+    margin-top: 10px;
+    width: 90px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #d23041;
+
+}
+
+.location {
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 8px;
+}
+
+.city {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.country {
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 8px;
+}
+
+.btn .active {
+    background-color: rgba(62, 243, 42, 0.65);
+    color: #ffffff;
+}
+
+.fullName {
+    font-weight: bold;
+    font-size: 30px;
+    padding-top: 10px;
+}
+
+.status {
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 8px;
+}
+
+.person_info {
+    margin-left: 10px;
+}
+.user_photo img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}

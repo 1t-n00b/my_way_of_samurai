@@ -9,7 +9,13 @@
 
 .post_block {
     padding: 10px;
+
 }
 .posts {
     margin-top: 10px;
+}
+
+textarea {
+    max-width: 500px;
+    border-radius: 3px;
 }

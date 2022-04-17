@@ -1,14 +1,13 @@
 import {DialogType, FriendType, MessageType, PostsType} from "../App";
-import profileReducer from "./profile_reducer";
-import dialogs_reducer from "./dialogs_reducer";
-import sidebarReducer from "./sidebar_reducer";
+
+import  {UserType} from "./users-reducer";
 
 export type StoreType = {
     _state: RootStateType,
-    dispatch: (action: ActionsTypes) => void
-    _callSubscriber: (_state: RootStateType) => void
+   // dispatch: (action: ActionsTypes) => void
+    // _callSubscriber: (_state: RootStateType) => void
     getState: () => RootStateType
-    subscribe: (callback: () => void) => void
+    // subscribe: (callback: () => void) => void
 }
 export type AddPostActionType = {
     type: "ADD-POST",
@@ -17,20 +16,31 @@ export type AddPostActionType = {
 export type UpdateMessageBody = {
     type: "UPDATE-NEW-MESSAGE-BODY",
     newMessageBody: string
-
 }
-
 export type ChangeNewTextActionType = {
     type: "UPDATE-NEW-POST-TEXT",
     newText: string,
-
 }
-
 export type SEND_MESSAGE = {
     type: "SEND-MESSAGE",
 }
+export type FollowAT = {
+    type: "FOLLOW",
+    userID: number
+}
+export type UnFollowAT = {
+    type: "UNFOLLOW",
+    userID: number
+}
+export type SET_USERS_AT = {
+    type: "SET-USERS",
+    users: UserType[]
+}
+export type SET_FRIENDS = {
+    type: "SET_FRIENDS"
+}
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateMessageBody | SEND_MESSAGE
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateMessageBody | SEND_MESSAGE | FollowAT | UnFollowAT | SET_USERS_AT |SET_FRIENDS
 
 export let store: StoreType = {
     _state: {
@@ -60,6 +70,9 @@ export let store: StoreType = {
             newMessageBody: "",
 
         },
+        usersPage: {
+            users: []
+        },
 
         sidebar: {
             friends: [
@@ -85,16 +98,14 @@ export let store: StoreType = {
         }
 
     },
-    _callSubscriber(_state: RootStateType) {
-    },
-
+    // _callSubscriber(_state: RootStateType) {
+    // },
     getState() {
         return this._state
     },
-    subscribe(observer: () => void) {
-        this._callSubscriber = observer
-    },
-
+    // subscribe(observer: () => void) {
+    //     // this._callSubscriber = observer
+    // },
     // addPost() {
     //     let newPost: PostsType = {id: 5, message: this._state.profilePage.newPostText, likesCount: 5}
     //     this._state.profilePage.posts.push(newPost)
@@ -106,34 +117,34 @@ export let store: StoreType = {
     //     this._callSubscriber(this._state)
     //
     // },
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogs_reducer(this._state.dialogsPage, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-
-        // if (action.type === ADD_POST) {
-        //     let newPost: PostsType = {
-        //         id: 5,
-        //         message: action.newPostText,
-        //         likesCount: 5
-        //     }
-        //     this._state.profilePage.posts.push(newPost)
-        //     this._state.profilePage.newPostText = ""
-        //     this._callSubscriber(this._state)
-        // } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-        //     this._state.profilePage.newPostText = action.newText
-        //     this._callSubscriber(this._state)
-        // } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-        //     this._state.dialogsPage.newMessageBody = action.newMessageBody
-        //     this._callSubscriber(this._state)
-        // } else if (action.type === SEND_MESSAGE) {
-        //     let body = this._state.dialogsPage.newMessageBody;
-        //     this._state.dialogsPage.newMessageBody = "";
-        //     this._state.dialogsPage.messages.push({id: 6, message: body});
-        //     this._callSubscriber(this._state)
-        // }
-        this._callSubscriber(this._state)
-    }
+   // dispatch(action) {
+        // this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // this._state.dialogsPage = dialogs_reducer(this._state.dialogsPage, action)
+        // this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        // this._state.usersPage = usersReducer(this._state.usersPage, action)
+        // // if (action.type === ADD_POST) {
+        // //     let newPost: PostsType = {
+        // //         id: 5,
+        // //         message: action.newPostText,
+        // //         likesCount: 5
+        // //     }
+        // //     this._state.profilePage.posts.push(newPost)
+        // //     this._state.profilePage.newPostText = ""
+        // //     this._callSubscriber(this._state)
+        // // } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        // //     this._state.profilePage.newPostText = action.newText
+        // //     this._callSubscriber(this._state)
+        // // } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+        // //     this._state.dialogsPage.newMessageBody = action.newMessageBody
+        // //     this._callSubscriber(this._state)
+        // // } else if (action.type === SEND_MESSAGE) {
+        // //     let body = this._state.dialogsPage.newMessageBody;
+        // //     this._state.dialogsPage.newMessageBody = "";
+        // //     this._state.dialogsPage.messages.push({id: 6, message: body});
+        // //     this._callSubscriber(this._state)
+        // // }
+        // this._callSubscriber(this._state)
+    //}
 
 }
 
@@ -141,6 +152,7 @@ export type RootStateType = {
     profilePage: { posts: Array<PostsType>, newPostText: string }
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
     sidebar: { friends: Array<FriendType> }
+    usersPage: {users:UserType[]}
 }
 
 export default store

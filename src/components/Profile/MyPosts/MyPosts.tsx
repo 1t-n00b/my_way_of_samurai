@@ -29,6 +29,7 @@ function MyPosts(props: MyPostsType) {
         // props.dispatch(changeNewTextAC(text))
         let newText = newPostElement.current!.value
         props.updateNewPostText(newText)
+        console.log(newText)
 
     }
 

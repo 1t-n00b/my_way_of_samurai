@@ -2,8 +2,9 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
-.dialogs_items{
+.dialogs_items a{
     padding: 10px;
+    color: red;
 }
 
 .dialogs_items .active {
@@ -12,9 +13,11 @@
 
 .dialog {
     padding: 10px;
+    color: white;
 }
 .messages {
     padding: 10px;
+    color: white;
 }
 .message {
 

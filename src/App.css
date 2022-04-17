@@ -1,3 +1,6 @@
+body{
+    margin: 0;
+}
 .app-wrapper {
     width: 1300px;
     height: 100%;
@@ -8,12 +11,11 @@
     grid-template-rows: 70px minmax(500px, 1fr);
     grid-template-columns: 300px 1fr;
     grid-gap: 20px;
-   margin: 0 auto;
+    margin: 0 auto;
 }
 
 .app-wrapper-content {
     grid-area: content;
-    background-color: gray;
-
-
+    background-color: #33363c;
+    border-radius: 20px;
 }

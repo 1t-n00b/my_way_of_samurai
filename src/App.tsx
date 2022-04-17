@@ -6,6 +6,8 @@ import "./App.css";
 import React from "react";
 import {ReduxStoreType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import Users from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 export type MessageType = {
     id: number
@@ -37,7 +39,6 @@ const App: React.FC<AppType> = (props) => {
     const state = props.store.getState();
     return (
         <div>
-
             <div className="app-wrapper">
                 <Header/>
                 <NavBar state={state.sidebar}/>
@@ -47,7 +48,7 @@ const App: React.FC<AppType> = (props) => {
                                element={<DialogsContainer
                                    // store={props.store}
                                />
-                        }
+                               }
                         />
                         <Route path="/profiles" element={<Profile
                             // store={props.store}
@@ -55,6 +56,7 @@ const App: React.FC<AppType> = (props) => {
                             // dispatch={props.store.dispatch.bind(props.store)}
 
                         />}/>
+                        <Route path="/users" element={<UsersContainer/>}/>
                     </Routes>
                 </div>
 
