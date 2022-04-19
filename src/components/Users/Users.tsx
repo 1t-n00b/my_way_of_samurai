@@ -7,19 +7,20 @@ type UsersPropsType = {
     users: UserType[],
     follow: (userID: number) => void,
     unfollow: (userID: number) => void
-    setUsers: (users:UserType[])=> void
+    setUsers: (users: UserType[]) => void
 }
 
 const Users = (props: UsersPropsType) => {
-
-  if (props.users.length===0) {
-      axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response=>{
-          debugger
-          props.setUsers(response.data.items)
-      })
-  }
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
+    }
 
     return (<div>
+            <button onClick={getUsers}>Get Users</button>
             {props.users.map(u => <div key={u.id}>
 
                 <div className={s.user_info}>
@@ -28,7 +29,7 @@ const Users = (props: UsersPropsType) => {
 
                             <img src={u.photos.small} alt=""/>
                         </div>
-                    {/*    <div className={s.btn}>{u.followed ?
+                        {/*    <div className={s.btn}>{u.followed ?
                             <button className={u.followed? s.active: ""} onClick={() => props.unfollow(u.id)}>FOLLOW</button> :
                             <button className={u.followed? `s.active` : ""} onClick={() => props.follow(u.id)}>UNFOLLOW</button>}
                         </div>*/}
