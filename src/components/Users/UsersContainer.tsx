@@ -1,8 +1,9 @@
 import React from "react";
-import Users from "./Users";
+// import Users from "./Users";
 import {connect} from "react-redux";
 import {followAC, setUsersAC, unfollowAC, UserType} from "../../redux/users-reducer";
 import {RootStateType} from "../../redux/store";
+import UsersClassComponent from "./UsersClassComponent";
 
 const mapStateToProps = (state:RootStateType) => {
         return {
@@ -24,4 +25,4 @@ const mapStateToProps = (state:RootStateType) => {
  }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersClassComponent);

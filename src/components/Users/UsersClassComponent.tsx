@@ -2,6 +2,7 @@ import React from "react";
 import {UserType} from "../../redux/users-reducer";
 import s from "./Users.module.css"
 import axios from "axios";
+// import {UsersPropsType} from "./Users";
 
 type UsersPropsType = {
     users: UserType[],
@@ -10,18 +11,25 @@ type UsersPropsType = {
     setUsers: (users: UserType[]) => void
 }
 
-const Users = (props: UsersPropsType) => {
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-                props.setUsers(response.data.items)
-            })
-        }
+class UsersClassComponent extends React.Component<UsersPropsType> {
+    constructor(props: UsersPropsType | Readonly<UsersPropsType>) {
+        super(props);
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            this.props.setUsers(response.data.items)
+        })
     }
+    // getUsers = () => {
+    //     if (this.props.users.length === 0) {
+    //         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    //             this.props.setUsers(response.data.items)
+    //         })
+    //     }
+    // }
 
-    return (<div>
-            <button onClick={getUsers}>Get Users</button>
-            {props.users.map(u => <div key={u.id}>
+    render() {
+        return <div>
+            {/*<button onClick={this.getUsers}>Get Users</button>*/}
+            {this.props.users.map(u => <div key={u.id}>
 
                 <div className={s.user_info}>
                     <div className={s.left_part}>
@@ -35,7 +43,7 @@ const Users = (props: UsersPropsType) => {
                         </div>*/}
                         <div className={s.btn}>
                             <button className={u.followed ? s.active : ""}
-                                    onClick={() => props.follow(u.id)}>{u.followed ? "FOLLOW" : "UNFOLLOW"}</button>
+                                    onClick={() => this.props.follow(u.id)}>{u.followed ? "FOLLOW" : "UNFOLLOW"}</button>
                         </div>
                     </div>
                     <div className={s.right_part}>
@@ -54,7 +62,7 @@ const Users = (props: UsersPropsType) => {
 
             </div>)}
         </div>
-    );
-};
+    }
+}
 
-export default Users;
+export default UsersClassComponent;
