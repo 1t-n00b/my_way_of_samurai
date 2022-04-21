@@ -35,13 +35,13 @@ export type AppType = {
     // dispatch: (action: ActionsTypes) => void
 }
 
-const App: React.FC<AppType> = (props) => {
-    const state = props.store.getState();
+const App: React.FC<AppType> = () => {
+   // const state = props.store.getState();
     return (
         <div>
             <div className="app-wrapper">
                 <Header/>
-                <NavBar state={state.sidebar}/>
+                <NavBar />
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path="/dialogs/*"

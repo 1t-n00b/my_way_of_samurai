@@ -5,7 +5,7 @@ import {RootStateType} from "../../redux/store";
 
 const mapStateToProps = (state: RootStateType)=> {
     return {
-        friends: state.sidebar
+        friends: state.sidebar.friends
     }
 }
 
