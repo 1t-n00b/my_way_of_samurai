@@ -12,7 +12,6 @@ import  {UserType} from "./users-reducer";
 // }
 export type AddPostActionType = {
     type: "ADD-POST",
-
 }
 export type UpdateMessageBody = {
     type: "UPDATE-NEW-MESSAGE-BODY",

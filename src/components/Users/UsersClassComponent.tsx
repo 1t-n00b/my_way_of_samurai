@@ -1,8 +1,8 @@
 import React from "react";
 import {UserType} from "../../redux/users-reducer";
-import s from "./Users.module.css"
 import axios from "axios";
-// import {UsersPropsType} from "./Users";
+import Users from "./Users";
+
 
 type UsersPropsType = {
     users: UserType[],
@@ -41,59 +41,65 @@ class UsersClassComponent extends React.Component<UsersPropsType> {
     }
 
     render() {
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-        let pages = []
-
-        for (let i = 1; i <= 5; i++) {
-            pages.push(i)
-        }
-        return <div>
-
-            <div className={s.navigatorPage}>
-                {pages.map(p => {
-                    return <span onClick={() => {
-                        this.onPageChanged(p)
-                    }} className={this.props.currentPage === p ? s.selectedPage : ""}>{p}</span>
-                })}
-                <span> ...</span>
-                <input type={"number"} value={this.props.currentPage}
-                       onChange={(e)=>this.onPageChanged(+e.currentTarget.value)} />
-                <div>{pagesCount}</div>
-            </div>
-            {/*<button onClick={this.getUsers}>Get Users</button>*/}
-            {this.props.users.map(u => <div key={u.id}>
-
-                <div className={s.user_info}>
-                    <div className={s.left_part}>
-                        <div className={s.user_photo}>
-
-                            <img src={u.photos.small} alt=""/>
-                        </div>
-                        {/*    <div className={s.btn}>{u.followed ?
-                            <button className={u.followed? s.active: ""} onClick={() => props.unfollow(u.id)}>FOLLOW</button> :
-                            <button className={u.followed? `s.active` : ""} onClick={() => props.follow(u.id)}>UNFOLLOW</button>}
-                        </div>*/}
-                        <div className={s.btn}>
-                            <button className={u.followed ? s.active : ""}
-                                    onClick={() => this.props.follow(u.id)}>{u.followed ? "FOLLOW" : "UNFOLLOW"}</button>
-                        </div>
-                    </div>
-                    <div className={s.right_part}>
-                        <div className={s.person_info}>
-                            <div className={s.fullName}>{u.name}</div>
-                            {/*<div className={s.status}>{u.status}</div>*/}
-                        </div>
-
-                        <div className={s.location}>
-                            {/*<div className={s.city}>{u.status}</div>*/}
-                            <div className={s.country}>{u.status}</div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>)}
-        </div>
+        return  <Users totalUsersCount={this.props.totalUsersCount}
+                       pageSize={this.props.pageSize}
+                       onPageChanged={this.onPageChanged}
+                       currentPage={this.props.currentPage}
+                       users={this.props.users}
+                       follow={this.props.follow}/>
+        // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+        // let pages = []
+        //
+        // for (let i = 1; i <= 5; i++) {
+        //     pages.push(i)
+        // }
+        // return <div>
+        //
+        //     <div className={s.navigatorPage}>
+        //         {pages.map(p => {
+        //             return <span onClick={() => {
+        //                 this.onPageChanged(p)
+        //             }} className={this.props.currentPage === p ? s.selectedPage : ""}>{p}</span>
+        //         })}
+        //         <span> ...</span>
+        //         <input type={"number"} value={this.props.currentPage}
+        //                onChange={(e)=>this.onPageChanged(+e.currentTarget.value)} />
+        //         <div>{pagesCount}</div>
+        //     </div>
+        //     {/*<button onClick={this.getUsers}>Get Users</button>*/}
+        //     {this.props.users.map(u => <div key={u.id}>
+        //
+        //         <div className={s.user_info}>
+        //             <div className={s.left_part}>
+        //                 <div className={s.user_photo}>
+        //
+        //                     <img src={u.photos.small} alt=""/>
+        //                 </div>
+        //                 {/*    <div className={s.btn}>{u.followed ?
+        //                     <button className={u.followed? s.active: ""} onClick={() => props.unfollow(u.id)}>FOLLOW</button> :
+        //                     <button className={u.followed? `s.active` : ""} onClick={() => props.follow(u.id)}>UNFOLLOW</button>}
+        //                 </div>*/}
+        //                 <div className={s.btn}>
+        //                     <button className={u.followed ? s.active : ""}
+        //                             onClick={() => this.props.follow(u.id)}>{u.followed ? "FOLLOW" : "UNFOLLOW"}</button>
+        //                 </div>
+        //             </div>
+        //             <div className={s.right_part}>
+        //                 <div className={s.person_info}>
+        //                     <div className={s.fullName}>{u.name}</div>
+        //                     {/*<div className={s.status}>{u.status}</div>*/}
+        //                 </div>
+        //
+        //                 <div className={s.location}>
+        //                     {/*<div className={s.city}>{u.status}</div>*/}
+        //                     <div className={s.country}>{u.status}</div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //
+        //
+        //     </div>)}
+        // </div>
     }
 }
 
