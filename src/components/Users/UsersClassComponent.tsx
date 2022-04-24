@@ -2,6 +2,7 @@ import React from "react";
 import {UserType} from "../../redux/users-reducer";
 import axios from "axios";
 import Users from "./Users";
+import Preloader from "../common/Preloader/Preloader";
 
 
 type UsersPropsType = {
@@ -13,16 +14,20 @@ type UsersPropsType = {
     totalUsersCount: number,
     currentPage: number,
     setCurrentPage: (currentPage: number) => void
-    setSetTotalCount:(totalCount: number) => void
+    setSetTotalCount: (totalCount: number) => void
+    setIsFetching:(isFetchinf: boolean) => void
+    isFetching: boolean
 }
 
 class UsersClassComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
+        this.props.setIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setSetTotalCount(response.data.totalCount)
-        })
+                this.props.setIsFetching(false)
+                this.props.setUsers(response.data.items)
+                this.props.setSetTotalCount(response.data.totalCount)
+            })
     }
 
     // getUsers = () => {
@@ -34,19 +39,25 @@ class UsersClassComponent extends React.Component<UsersPropsType> {
     // }
 
     onPageChanged = (pageNumber: number) => {
+        this.props.setIsFetching(true)
         this.props.setCurrentPage(pageNumber)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+            this.props.setIsFetching(false)
             this.props.setUsers(response.data.items)
         })
     }
 
     render() {
-        return  <Users totalUsersCount={this.props.totalUsersCount}
-                       pageSize={this.props.pageSize}
-                       onPageChanged={this.onPageChanged}
-                       currentPage={this.props.currentPage}
-                       users={this.props.users}
-                       follow={this.props.follow}/>
+        return <div className={"users_preloader"}>
+            {this.props.isFetching ? <Preloader/> : null}
+            <Users totalUsersCount={this.props.totalUsersCount}
+                   pageSize={this.props.pageSize}
+                   onPageChanged={this.onPageChanged}
+                   currentPage={this.props.currentPage}
+                   users={this.props.users}
+                   follow={this.props.follow}
+            />
+        </div>
         // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
         // let pages = []
         //

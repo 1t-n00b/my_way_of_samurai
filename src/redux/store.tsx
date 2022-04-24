@@ -1,6 +1,6 @@
 import {DialogType, FriendType, MessageType, PostsType} from "../App";
 
-import  {UserType} from "./users-reducer";
+import {UserType} from "./users-reducer";
 // import exp from "constants";
 
 // export type StoreType = {
@@ -44,12 +44,17 @@ export type SET_TOTAL_COUNT_AT = {
     type: "SET_TOTAL_COUNT",
     totalCount: number
 }
+export type SET_TOGGLE_IS_FETCHING = {
+    type: "TOGGLE_IS_FETCHING",
+    isFetching: boolean
+}
 export type SET_FRIENDS = {
     type: "SET_FRIENDS"
 }
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateMessageBody |
-    SEND_MESSAGE | FollowAT | UnFollowAT | SET_USERS_AT |SET_FRIENDS | SET_CURRENT_PAGE_AT | SET_TOTAL_COUNT_AT
+    SEND_MESSAGE | FollowAT | UnFollowAT | SET_USERS_AT | SET_FRIENDS | SET_CURRENT_PAGE_AT |
+    SET_TOTAL_COUNT_AT | SET_TOGGLE_IS_FETCHING
 
 //  let store: StoreType = {
 //     _state: {
@@ -164,7 +169,7 @@ export type RootStateType = {
     profilePage: { posts: Array<PostsType>, newPostText: string }
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
     sidebar: { friends: Array<FriendType> }
-    usersPage: {users:UserType[], pageSize: number, totalUsersCount: number, currentPage: number}
+    usersPage: { users: UserType[], pageSize: number, totalUsersCount: number, currentPage: number, isFetching: boolean }
 }
 
 // export default store

@@ -83,7 +83,9 @@
 
 .selectedPage {
     font-weight: bold;
-    color: gainsboro;
+    color: #000;
+    transform: scale(1.25);
+    padding: 0 10px 0 10px;
 }
 
 .navigatorPage {
@@ -92,6 +94,9 @@
     margin: 0 auto;
     font-size: 30px;
     text-align: center;
+    padding-top: 10px;
+    color: gainsboro;
+
 }
 
 .navigatorPage:hover {
@@ -104,7 +109,8 @@
     border-radius: 5px;
     font-size: 25px;
     text-align: center;
-    width: 40px;
+    /*padding-right: 10px;*/
+    /*max-width: 55px;*/
 }
 
 .navigatorPage input[type="number"]::-webkit-outer-spin-button,

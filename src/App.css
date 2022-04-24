@@ -1,6 +1,7 @@
-body{
+body {
     margin: 0;
 }
+
 .app-wrapper {
     width: 1300px;
     height: 100%;
@@ -18,4 +19,8 @@ body{
     grid-area: content;
     background-color: #33363c;
     border-radius: 20px;
+}
+
+.users_preloader {
+    position: relative;
 }

@@ -1,4 +1,12 @@
-import {ActionsTypes, FollowAT, SET_CURRENT_PAGE_AT, SET_TOTAL_COUNT_AT, SET_USERS_AT, UnFollowAT} from "./store";
+import {
+    ActionsTypes,
+    FollowAT,
+    SET_CURRENT_PAGE_AT,
+    SET_TOTAL_COUNT_AT,
+    SET_USERS_AT,
+    SET_TOGGLE_IS_FETCHING,
+    UnFollowAT
+} from "./store";
 
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
@@ -7,6 +15,7 @@ const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 export type UserType = {
     // id: number,
@@ -32,7 +41,8 @@ export type UserSateType = {
     users: UserType[],
     pageSize: number,
     totalUsersCount: number
-    currentPage: number
+    currentPage: number,
+    isFetching: boolean
 };
 
 const initialState: UserSateType = {
@@ -51,7 +61,8 @@ const initialState: UserSateType = {
     ],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 const usersReducer = (state = initialState, action: ActionsTypes) => {
@@ -73,6 +84,8 @@ const usersReducer = (state = initialState, action: ActionsTypes) => {
             return {...state, currentPage: action.currentPage}
         case SET_TOTAL_COUNT:
             return {...state, totalUsersCount: action.totalCount}
+        case TOGGLE_IS_FETCHING :
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -83,5 +96,6 @@ export const unfollowAC = (userID: number): UnFollowAT => ({type: UNFOLLOW, user
 export const setUsersAC = (users: UserType[]): SET_USERS_AT => ({type: SET_USERS, users});
 export const setCurrentPageAC = (currentPage: number): SET_CURRENT_PAGE_AT => ({type: "SET_CURRENT_PAGE", currentPage});
 export const setTotalCountAC = (totalCount: number): SET_TOTAL_COUNT_AT => ({type: "SET_TOTAL_COUNT", totalCount});
+export const setIsFetchingAC = (isFetching: boolean): SET_TOGGLE_IS_FETCHING => ({type: "TOGGLE_IS_FETCHING", isFetching});
 
 export default usersReducer
