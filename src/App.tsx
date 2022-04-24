@@ -36,12 +36,12 @@ export type AppType = {
 }
 
 const App: React.FC<AppType> = () => {
-   // const state = props.store.getState();
+    // const state = props.store.getState();
     return (
         <div>
             <div className="app-wrapper">
                 <Header/>
-                <NavBar />
+                <NavBar/>
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path="/dialogs/*"

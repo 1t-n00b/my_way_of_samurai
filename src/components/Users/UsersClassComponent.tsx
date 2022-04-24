@@ -14,8 +14,8 @@ type UsersPropsType = {
     totalUsersCount: number,
     currentPage: number,
     setCurrentPage: (currentPage: number) => void
-    setSetTotalCount: (totalCount: number) => void
-    setIsFetching:(isFetchinf: boolean) => void
+    setTotalCount: (totalCount: number) => void
+    setIsFetching: (isFetching: boolean) => void
     isFetching: boolean
 }
 
@@ -26,7 +26,7 @@ class UsersClassComponent extends React.Component<UsersPropsType> {
             .then(response => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(response.data.items)
-                this.props.setSetTotalCount(response.data.totalCount)
+                this.props.setTotalCount(response.data.totalCount)
             })
     }
 
