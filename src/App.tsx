@@ -1,13 +1,12 @@
 import Header from "./components/Header/Header";
 import NavBar from "./components/Navbar/NavBar";
-import Profile from "./components/Profile/Profile";
 import {Route, Routes} from "react-router-dom";
 import "./App.css";
 import React from "react";
 import {ReduxStoreType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-// import Users from "./components/Users/Users";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 export type MessageType = {
     id: number
@@ -50,7 +49,7 @@ const App: React.FC<AppType> = () => {
                                />
                                }
                         />
-                        <Route path="/profiles" element={<Profile
+                        <Route path="/profile/*" element={<ProfileContainer
                             // store={props.store}
                             // profilePage={state.profilePage}
                             // dispatch={props.store.dispatch.bind(props.store)}
