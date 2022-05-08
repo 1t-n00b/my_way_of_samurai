@@ -1,4 +1,3 @@
-import Header from "./components/Header/Header";
 import NavBar from "./components/Navbar/NavBar";
 import {Route, Routes} from "react-router-dom";
 import "./App.css";
@@ -7,6 +6,7 @@ import {ReduxStoreType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 export type MessageType = {
     id: number
@@ -36,10 +36,12 @@ export type AppType = {
 
 const App: React.FC<AppType> = () => {
     // const state = props.store.getState();
+
     return (
         <div>
             <div className="app-wrapper">
-                <Header/>
+
+                <HeaderContainer/>
                 <NavBar/>
                 <div className="app-wrapper-content">
                     <Routes>
@@ -49,12 +51,12 @@ const App: React.FC<AppType> = () => {
                                />
                                }
                         />
-                        <Route path="/profile/*" element={<ProfileContainer
-                            // store={props.store}
-                            // profilePage={state.profilePage}
-                            // dispatch={props.store.dispatch.bind(props.store)}
-
-                        />}/>
+                       {/*/!* <Route path="/profile/*"*/}
+                       {/*        element={<ProfileContainer/>}/>*!/*/}
+                      {/*  <Route path="/profile/">
+                            <Route path=":userId" element={<ProfileContainer />} />
+                        </Route>*/}
+                           <Route path='/profile/:userID' element={<ProfileContainer/>}/>
                         <Route path="/users" element={<UsersContainer/>}/>
                     </Routes>
                 </div>

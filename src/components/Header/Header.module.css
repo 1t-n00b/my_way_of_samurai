@@ -6,7 +6,7 @@
     align-items: center;
     width: 100%;
     margin: 0 auto;
-
+    justify-content: space-between;
 }
 
 .header img {
@@ -14,3 +14,17 @@
     width: 120px;
     height: 30px;
 }
+
+.loginBlock {
+    float: right;
+    color: gainsboro;
+    font-size: 30px;
+    padding-right: 50px;
+    font-weight: bold;
+}
+
+.loginBlock a {
+    color: gainsboro;
+    text-decoration: none;
+}
+

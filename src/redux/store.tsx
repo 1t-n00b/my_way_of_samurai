@@ -77,10 +77,19 @@ export type SET_USER_PROFILE_AT = {
     type: "SET_USER_PROFILE",
     profile: ProfileType
 }
+export type SET_AUTH_USER_DATA_AT = {
+    type: "SET_AUTH_USER_DATA",
+    data: {
+        id: number,
+        email: string,
+        login: string,
+    }
+    isAuth: boolean
+}
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateMessageBody |
     SEND_MESSAGE | FollowAT | UnFollowAT | SET_USERS_AT | SET_FRIENDS | SET_CURRENT_PAGE_AT |
-    SET_TOTAL_COUNT_AT | SET_TOGGLE_IS_FETCHING | SET_USER_PROFILE_AT
+    SET_TOTAL_COUNT_AT | SET_TOGGLE_IS_FETCHING | SET_USER_PROFILE_AT | SET_AUTH_USER_DATA_AT
 /*
  let store: StoreType = {
     _state: {
@@ -196,6 +205,13 @@ export type RootStateType = {
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
     sidebar: { friends: Array<FriendType> }
     usersPage: { users: UserType[], pageSize: number, totalUsersCount: number, currentPage: number, isFetching: boolean }
+    auth: { data: {
+            id: number,
+            email: string,
+            login: string,
+        }
+        isAuth: false
+    }
 }
 
 // export default store

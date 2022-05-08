@@ -34,7 +34,8 @@ const Users = (props: UsersPropsType) => {
                        onChange={(e) => props.onPageChanged(+e.currentTarget.value)}/>
                 <div onClick={() => {
                     props.onPageChanged(pagesCount)
-                }} className={props.currentPage === pagesCount ? s.selectedPage : ""}>...{pagesCount}</div>
+                }}
+                     className={props.currentPage === pagesCount ? s.selectedPage : ""}>{pagesCount ? `...${pagesCount}` : ""}</div>
             </div>
             {/*<button onClick={this.getUsers}>Get Users</button>*/}
             {props.users.map(u => <div key={u.id}>
