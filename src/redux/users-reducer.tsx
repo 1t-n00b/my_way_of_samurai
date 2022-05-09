@@ -1,15 +1,17 @@
 import {
     ActionsTypes,
-    FollowAT,
+    // FollowAT,
     SET_CURRENT_PAGE_AT,
     SET_TOTAL_COUNT_AT,
     SET_USERS_AT,
     SET_TOGGLE_IS_FETCHING,
-    UnFollowAT
+    // UnFollowAT,
+    Follow_UnFollowAT
 } from "./store";
 
-const FOLLOW = "FOLLOW"
-const UNFOLLOW = "UNFOLLOW"
+// const FOLLOW = "FOLLOW"
+const FOLLOW_UNFOLLOW = "FOLLOW/UNFOLLOW"
+// const UNFOLLOW = "UNFOLLOW"
 // const ADD_POST = "ADD-POST";
 // const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USERS = "SET-USERS";
@@ -68,16 +70,27 @@ const initialState: UserSateType = {
 const usersReducer = (state = initialState, action: ActionsTypes) => {
 
     switch (action.type) {
-        case FOLLOW:
-            return {
-                ...state,
-                users: state.users.map(u => u.id === action.userID ? {...u, followed: true} : u)
-            }
-        case  UNFOLLOW:
-            return {
-                ...state,
-                users: state.users.map(u => u.id === action.userID ? {...u, followed: false} : u)
-            }
+        // case FOLLOW:
+        //     return {
+        //         ...state,
+        //         // follow/unfollow в одной функции
+        //         users: state.users.map(u => u.id === action.userID ? {...u, followed: true} : u)
+        //     }
+
+        // case  UNFOLLOW:
+        //     return {
+        //         ...state,
+        //         users: state.users.map(u => u.id === action.userID ? {...u, followed: false} : u)
+        //     }
+
+        // follow/unfollow в одной функции
+        case FOLLOW_UNFOLLOW:
+                return {
+                    ...state,
+                    // follow/unfollow в одной функции
+                    users: state.users.map(u => u.id === action.userID ? {...u, followed:!u.followed} : u)
+                }
+
         case SET_USERS:
             return {...state, users: action.users}
         case SET_CURRENT_PAGE:
@@ -91,8 +104,9 @@ const usersReducer = (state = initialState, action: ActionsTypes) => {
     }
 }
 
-export const follow = (userID: number): FollowAT => ({type: FOLLOW, userID: userID});
-export const unfollow = (userID: number): UnFollowAT => ({type: UNFOLLOW, userID});
+// export const follow = (userID: number): FollowAT => ({type: FOLLOW, userID: userID});
+// export const unfollow = (userID: number): UnFollowAT => ({type: UNFOLLOW, userID});
+export const follow_unfollow = (userID: number): Follow_UnFollowAT => ({type: FOLLOW_UNFOLLOW, userID});
 export const setUsers = (users: UserType[]): SET_USERS_AT => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage: number): SET_CURRENT_PAGE_AT => ({type: "SET_CURRENT_PAGE", currentPage});
 export const setTotalCount = (totalCount: number): SET_TOTAL_COUNT_AT => ({type: "SET_TOTAL_COUNT", totalCount});

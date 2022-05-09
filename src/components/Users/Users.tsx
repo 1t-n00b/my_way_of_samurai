@@ -10,8 +10,10 @@ type UsersPropsType = {
     onPageChanged: (pageNumber: number) => void,
     currentPage: number,
     users: UserType[],
-    follow: (userID: number) => void,
-    unfollow: (userID: number) => void,
+    // follow: (userID: number) => void,
+    // unfollow: (userID: number) => void,
+    follow_unfollow: (userID: number) => void,
+
 }
 
 const Users = (props: UsersPropsType) => {
@@ -20,6 +22,30 @@ const Users = (props: UsersPropsType) => {
 
     for (let i = 1; i <= 5; i++) {
         pages.push(i)
+    }
+    const follow = (id: number) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
+            withCredentials: true,
+            headers: {
+                "API-KEY": "8fad767d-9189-48dd-8e32-2ec4faaa594d"
+            }
+        }).then(response => {
+            if (response.data.resultCode === 0) {
+                props.follow_unfollow(id)
+            }
+        })
+    }
+    const unFollow = (id: number) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+            withCredentials: true,
+            headers: {
+                "API-KEY": "8fad767d-9189-48dd-8e32-2ec4faaa594d"
+            }
+        }).then(response => {
+            if (response.data.resultCode === 0) {
+                props.follow_unfollow(id)
+            }
+        })
     }
 
     return (
@@ -49,42 +75,19 @@ const Users = (props: UsersPropsType) => {
                                 <img src={u.photos.small} alt=""/>
                             </div>
                         </NavLink>
-
+                        {/*подписаться отписать*/}
                         <div className={s.btn}>{u.followed ?
                             <button className={u.followed ? s.active : ""}
                                     onClick={() => {
-                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "8fad767d-9189-48dd-8e32-2ec4faaa594d"
-                                            }
-                                        }).then(response => {
-                                           if(response.data.resultCode===0) {
-                                               props.unfollow(u.id)
-                                           }
-                                        })
-                                    }}>UNFOLLOW</button> :
+                                        unFollow(u.id)
+                                    }}>UNFOLLOW</button>
+                            :
                             <button className={u.followed ? `s.active` : ""}
                                     onClick={() => {
-                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "8fad767d-9189-48dd-8e32-2ec4faaa594d"
-                                            }
-                                        }).then(response => {
-                                            if(response.data.resultCode===0) {
-                                                props.follow(u.id)
-                                            }
-                                        })
+                                        follow(u.id)
                                     }}
                             >FOLLOW</button>}
                         </div>
-                        {/*<div className={s.btn}>*/}
-                        {/*    <button className={u.followed ? s.active : ""}*/}
-                        {/*            onClick={() => props.follow(u.id)}>{u.followed ? "FOLLOW" : "UNFOLLOW"}*/}
-                        {/*    </button>*/}
-                        {/*</div>*/}
-
                     </div>
                     <div className={s.right_part}>
                         <div className={s.person_info}>

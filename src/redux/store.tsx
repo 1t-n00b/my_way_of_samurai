@@ -54,6 +54,10 @@ export type UnFollowAT = {
     type: "UNFOLLOW",
     userID: number
 }
+export type Follow_UnFollowAT = {
+    type: "FOLLOW/UNFOLLOW",
+    userID: number
+}
 export type SET_USERS_AT = {
     type: "SET-USERS",
     users: UserType[]
@@ -89,7 +93,7 @@ export type SET_AUTH_USER_DATA_AT = {
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateMessageBody |
     SEND_MESSAGE | FollowAT | UnFollowAT | SET_USERS_AT | SET_FRIENDS | SET_CURRENT_PAGE_AT |
-    SET_TOTAL_COUNT_AT | SET_TOGGLE_IS_FETCHING | SET_USER_PROFILE_AT | SET_AUTH_USER_DATA_AT
+    SET_TOTAL_COUNT_AT | SET_TOGGLE_IS_FETCHING | SET_USER_PROFILE_AT | SET_AUTH_USER_DATA_AT| Follow_UnFollowAT
 /*
  let store: StoreType = {
     _state: {

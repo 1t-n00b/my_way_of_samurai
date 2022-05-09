@@ -14,14 +14,13 @@ type  HeaderPropsType = {
 
 
 function Header(props: HeaderPropsType) {
-    console.log(props.login)
     return (
         <header className={h.header}>
             <img src="https://buddy.ghostpool.com/wp-content/themes/buddy/lib/images/logo.png" alt=""/>
 
             <div className={h.loginBlock}>
 
-                {props.isAuth?
+                {props.isAuth ?
                     props.login
                     :
                     <NavLink to="/login">Login</NavLink>}

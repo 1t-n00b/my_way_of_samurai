@@ -1,5 +1,5 @@
 import React from "react";
-import {UserType} from "../../redux/users-reducer";
+import { UserType} from "../../redux/users-reducer";
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
@@ -7,8 +7,9 @@ import Preloader from "../common/Preloader/Preloader";
 
 type UsersPropsType = {
     users: UserType[],
-    follow: (userID: number) => void,
-    unfollow: (userID: number) => void
+    // follow: (userID: number) => void,
+    follow_unfollow: (userID: number) => void,
+    // unfollow: (userID: number) => void
     setUsers: (users: UserType[]) => void
     pageSize: number,
     totalUsersCount: number,
@@ -59,8 +60,9 @@ class UsersClassComponent extends React.Component<UsersPropsType> {
                    onPageChanged={this.onPageChanged}
                    currentPage={this.props.currentPage}
                    users={this.props.users}
-                   follow={this.props.follow}
-                   unfollow={this.props.unfollow}
+                   // follow={this.props.follow}
+                   // unfollow={this.props.unfollow}
+                   follow_unfollow={this.props.follow_unfollow}
             />
         </div>
         // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
