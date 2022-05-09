@@ -22,7 +22,9 @@ type UsersPropsType = {
 class UsersClassComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+            withCredentials: true
+        })
             .then(response => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -41,7 +43,9 @@ class UsersClassComponent extends React.Component<UsersPropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.setIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{
+            withCredentials: true
+        }).then(response => {
             this.props.setIsFetching(false)
             this.props.setUsers(response.data.items)
         })
@@ -56,6 +60,7 @@ class UsersClassComponent extends React.Component<UsersPropsType> {
                    currentPage={this.props.currentPage}
                    users={this.props.users}
                    follow={this.props.follow}
+                   unfollow={this.props.unfollow}
             />
         </div>
         // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
