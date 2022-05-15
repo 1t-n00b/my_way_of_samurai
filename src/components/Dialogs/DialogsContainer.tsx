@@ -51,15 +51,15 @@ let mapStateToProps = (state: RootStateType) => {
         dialogsPage: state.dialogsPage
     }
 }
-let mapDispatchToProps = (dispatch: (arg0: { type: "UPDATE-NEW-MESSAGE-BODY" | "SEND-MESSAGE"; newMessageBody?: string; }) => void) => {
-    return{
-        updateNewMessageBody: (newMessageBody: string)=> {dispatch(updateNewMessageBodyAC(newMessageBody))},
-        sendMessage: ()=> { dispatch(sendMessageAC())}
+// let mapDispatchToProps = (dispatch: (arg0: { type: "UPDATE-NEW-MESSAGE-BODY" | "SEND-MESSAGE"; newMessageBody?: string; }) => void) => {
+//     return{
+//         updateNewMessageBody: (newMessageBody: string)=> {dispatch(updateNewMessageBodyAC(newMessageBody))},
+//         sendMessage: ()=> { dispatch(sendMessageAC())}
+//
+//     }
+// }
 
-    }
-}
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, {sendMessageAC,updateNewMessageBodyAC})(Dialogs)
 
 
 export default DialogsContainer;

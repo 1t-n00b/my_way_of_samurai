@@ -2,8 +2,7 @@ import React, {ChangeEvent} from "react";
 import Dial from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {MessageType} from "../../App";
-import {DialogType} from "../../App";
+import {DialogType, MessageType} from "../../App";
 
 type DialogsType = {
     // dialogs : Array<DialogType>
@@ -14,8 +13,8 @@ type DialogsType = {
     //     newMessageBody: string
     // }
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
-    sendMessage: () => void
-    updateNewMessageBody: (newMessageBody: string) => void
+    sendMessageAC: () => void
+    updateNewMessageBodyAC: (newMessageBody: string) => void
     // dispatch: (action: ActionsTypes) => void
 }
 
@@ -27,11 +26,11 @@ function Dialogs(props: DialogsType) {
     let newMessageBody = state.newMessageBody
 
     let onSendMessageClick = () => {
-        props.sendMessage()
+        props.sendMessageAC()
     }
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newMessageBody = e.target.value
-        props.updateNewMessageBody(newMessageBody);
+        props.updateNewMessageBodyAC(newMessageBody);
     }
     return (
         <div className={Dial.dialogs}>

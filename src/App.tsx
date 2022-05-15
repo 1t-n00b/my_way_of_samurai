@@ -48,7 +48,7 @@ const App: React.FC<AppType> = () => {
                         <Route path="/dialogs/*"
                                element={<DialogsContainer
                                    // store={props.store}
-                               />
+                              />
                                }
                         />
                        {/*/!* <Route path="/profile/*"*/}

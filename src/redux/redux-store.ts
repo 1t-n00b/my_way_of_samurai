@@ -18,3 +18,4 @@ let store  = createStore(reducers);
 
 export default store
 export type ReduxStoreType = typeof store
+// export type ReduxStoreType = ReturnType<typeof reducers>
