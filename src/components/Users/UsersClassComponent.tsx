@@ -2,7 +2,7 @@ import React from "react";
 import {UserType} from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import {getUsers} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 
 type UsersPropsType = {
@@ -23,7 +23,7 @@ type UsersPropsType = {
 class UsersClassComponent extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.setIsFetching(true)
-        getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.setIsFetching(false)
             this.props.setUsers(data.items)
             this.props.setTotalCount(data.totalCount)
@@ -34,7 +34,7 @@ class UsersClassComponent extends React.Component<UsersPropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.setIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-        getUsers(pageNumber, this.props.pageSize).then(data => {
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
             this.props.setIsFetching(false)
             this.props.setUsers(data.items)
         })
