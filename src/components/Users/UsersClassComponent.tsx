@@ -17,7 +17,9 @@ type UsersPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
-    isFetching: boolean
+    isFetching: boolean,
+    followingInProgress: []
+    toggleFollowingProgress:  (isFetching: boolean, userID: number)=> void
 }
 
 class UsersClassComponent extends React.Component<UsersPropsType> {
@@ -51,6 +53,10 @@ class UsersClassComponent extends React.Component<UsersPropsType> {
                 // follow={this.props.follow}
                 // unfollow={this.props.unfollow}
                    follow_unfollow={this.props.follow_unfollow}
+                   toggleFollowingProgress={this.props.toggleFollowingProgress}
+                   followingInProgress={this.props.followingInProgress}
+
+
             />
         </div>
         // let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);

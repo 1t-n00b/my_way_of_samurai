@@ -46,7 +46,6 @@ function Dialogs(props: DialogsType) {
                         <button onClick={onSendMessageClick}>Send</button>
                     </div>
                 </div>
-
             </div>
         </div>
     )

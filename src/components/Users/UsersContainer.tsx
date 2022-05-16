@@ -1,11 +1,11 @@
-import React from "react";
 import {connect} from "react-redux";
 import {
-
+    follow_unfollow,
     setCurrentPage,
+    setIsFetching,
     setTotalCount,
     setUsers,
-    setIsFetching, follow_unfollow,
+    toggleFollowingProgress,
 } from "../../redux/users-reducer";
 import {RootStateType} from "../../redux/store";
 import UsersClassComponent from "./UsersClassComponent";
@@ -16,7 +16,8 @@ const mapStateToProps = (state: RootStateType) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 // const mapDispatchToProps = (dispatch: (arg0: { type: string; userID?: number; users?: UserType[]; }) => void) => {
@@ -49,5 +50,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalCount,
-    setIsFetching
+    setIsFetching,
+    toggleFollowingProgress
 })(UsersClassComponent);

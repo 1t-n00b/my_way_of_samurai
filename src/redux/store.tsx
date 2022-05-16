@@ -90,10 +90,15 @@ export type SET_AUTH_USER_DATA_AT = {
     }
     isAuth: boolean
 }
+export type TOGGLE_FOLLOW_UNFOLLOW_AT = {
+    type : "TOGGLE_FOLLOW_UNFOLLOW" ,
+    isFetching: boolean,
+    userID: number
+}
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateMessageBody |
     SEND_MESSAGE | FollowAT | UnFollowAT | SET_USERS_AT | SET_FRIENDS | SET_CURRENT_PAGE_AT |
-    SET_TOTAL_COUNT_AT | SET_TOGGLE_IS_FETCHING | SET_USER_PROFILE_AT | SET_AUTH_USER_DATA_AT| Follow_UnFollowAT
+    SET_TOTAL_COUNT_AT | SET_TOGGLE_IS_FETCHING | SET_USER_PROFILE_AT | SET_AUTH_USER_DATA_AT| Follow_UnFollowAT |TOGGLE_FOLLOW_UNFOLLOW_AT
 /*
  let store: StoreType = {
     _state: {
@@ -208,7 +213,7 @@ export type RootStateType = {
     profilePage: { posts: Array<PostsType>, newPostText: string, profile: ProfileType }
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
     sidebar: { friends: Array<FriendType> }
-    usersPage: { users: UserType[], pageSize: number, totalUsersCount: number, currentPage: number, isFetching: boolean }
+    usersPage: { users: UserType[], pageSize: number, totalUsersCount: number, currentPage: number, isFetching: boolean, followingInProgress: [] }
     auth: { data: {
             id: number,
             email: string,
