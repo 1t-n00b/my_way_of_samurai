@@ -20,3 +20,7 @@ export const usersAPI = {
         return instance.delete(`follow/${usedID}`)
     }
 }
+export const authAPI = {
+    me() {return instance.get(`auth/me`)
+    }
+}

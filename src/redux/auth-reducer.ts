@@ -1,4 +1,6 @@
-import {SET_AUTH_USER_DATA_AT} from "./store";
+import {ActionsTypes, SET_AUTH_USER_DATA_AT} from "./store";
+import {authAPI} from "../api/api";
+import {Dispatch} from "react";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 
@@ -35,5 +37,16 @@ export const setAuthUserDataAC = (id: number, email: string, login: string): SET
         isAuth: false
     }
 }
+
+export const getAuthUserData = () => (dispatch: Dispatch<ActionsTypes>)=> {
+    return authAPI.me()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, email, login} = response.data.data
+               dispatch(setAuthUserDataAC(id, email, login))
+            }
+        })
+}
+
 
 export default authReducer
