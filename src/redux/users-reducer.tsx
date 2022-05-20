@@ -8,6 +8,8 @@ import {
     // UnFollowAT,
     Follow_UnFollowAT, TOGGLE_FOLLOW_UNFOLLOW_AT,
 } from "./store";
+import {usersAPI} from "../api/api";
+import {Dispatch} from "react";
 
 // const FOLLOW = "FOLLOW"
 const FOLLOW_UNFOLLOW = "FOLLOW/UNFOLLOW"
@@ -128,6 +130,40 @@ export const toggleFollowingProgress = (isFetching: boolean, userID: number): TO
     isFetching,
     userID
 })
+
+export const getUsers = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch<ActionsTypes>) => {
+        dispatch(setIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalCount(data.totalCount))
+        })
+    }
+}
+export const acceptFollow = (usedID: number) => {
+  return (dispatch :Dispatch<ActionsTypes>) =>{
+      dispatch(toggleFollowingProgress(true, usedID))
+      usersAPI.follow(usedID).then(response => {
+          if (response.data.resultCode === 0) {
+              dispatch(follow_unfollow(usedID))
+          }
+         dispatch(toggleFollowingProgress(false, usedID))
+      })
+    }
+}
+export const acceptUnfollow = (usedID: number) => {
+    return (dispatch :Dispatch<ActionsTypes>) =>{
+        dispatch(toggleFollowingProgress(true, usedID))
+        usersAPI.unFollow(usedID).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(follow_unfollow(usedID))
+            }
+            dispatch(toggleFollowingProgress(false, usedID))
+        })
+    }
+}
+
 
 
 export default usersReducer

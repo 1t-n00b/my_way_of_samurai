@@ -1,9 +1,10 @@
 import {connect} from "react-redux";
 import {
-    follow_unfollow,
+    acceptFollow,
+    acceptUnfollow,
+    getUsers,
     setCurrentPage,
     setIsFetching,
-    setTotalCount,
     setUsers,
     toggleFollowingProgress,
 } from "../../redux/users-reducer";
@@ -46,10 +47,11 @@ const mapStateToProps = (state: RootStateType) => {
 
 
 export default connect(mapStateToProps, {
-    follow_unfollow,
     setUsers,
     setCurrentPage,
-    setTotalCount,
     setIsFetching,
-    toggleFollowingProgress
+    toggleFollowingProgress,
+    getUsers,
+    acceptFollow,
+    acceptUnfollow
 })(UsersClassComponent);
