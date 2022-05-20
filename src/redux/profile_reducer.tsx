@@ -1,5 +1,7 @@
 import {PostsType} from "../App";
 import {ActionsTypes, AddPostActionType, ChangeNewTextActionType, ProfileType, SET_USER_PROFILE_AT} from "./store";
+import {Dispatch} from "react";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -64,5 +66,11 @@ export const setUserProfile = (profile: ProfileType): SET_USER_PROFILE_AT => {
         type: SET_USER_PROFILE,
         profile
     }
+}
+export const getUserProfile = (userID: number) => (dispatch: Dispatch<ActionsTypes>)=>{
+    return   usersAPI.getProfile(userID)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        })
 }
 export default profileReducer

@@ -13,6 +13,9 @@ export const usersAPI = {
             withCredentials: true
         }).then(response => response.data)
     },
+    getProfile(userID: number) {
+        return instance.get(`profile/` + userID)
+    },
     follow(usedID: number) {
         return instance.post(`follow/${usedID}`)
     },
@@ -21,6 +24,7 @@ export const usersAPI = {
     }
 }
 export const authAPI = {
-    me() {return instance.get(`auth/me`)
+    me() {
+        return instance.get(`auth/me`)
     }
 }
