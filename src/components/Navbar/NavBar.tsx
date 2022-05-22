@@ -15,7 +15,7 @@ function NavBar() {
             <div className={s.item}>
                 {/*<NavLink to={"/profiles"} >Profile</NavLink>*/}
                 <NavLink className={navData => navData.isActive ? s.activeLink : s.item}
-                         to="/profile/*">Profile</NavLink>
+                         to="/profile/">Profile</NavLink>
             </div>
 
             <div className={`${s.item} ${s.active}`}>

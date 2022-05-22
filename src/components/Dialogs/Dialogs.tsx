@@ -3,6 +3,7 @@ import Dial from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogType, MessageType} from "../../App";
+import {Navigate} from "react-router-dom";
 
 type DialogsType = {
     // dialogs : Array<DialogType>
@@ -15,6 +16,7 @@ type DialogsType = {
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
     sendMessageAC: () => void
     updateNewMessageBodyAC: (newMessageBody: string) => void
+    isAuth: boolean
     // dispatch: (action: ActionsTypes) => void
 }
 
@@ -32,6 +34,8 @@ function Dialogs(props: DialogsType) {
         let newMessageBody = e.target.value
         props.updateNewMessageBodyAC(newMessageBody);
     }
+
+    if (!props.isAuth) return <Navigate to="/login"/>
     return (
         <div className={Dial.dialogs}>
             <div className={Dial.dialogs_items}>

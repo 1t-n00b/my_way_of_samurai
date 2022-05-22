@@ -7,6 +7,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 export type MessageType = {
     id: number
@@ -56,8 +57,11 @@ const App: React.FC<AppType> = () => {
                       {/*  <Route path="/profile/">
                             <Route path=":userId" element={<ProfileContainer />} />
                         </Route>*/}
+                        <Route path='/profile/' element={<ProfileContainer/>}/>
                            <Route path='/profile/:userID' element={<ProfileContainer/>}/>
+
                         <Route path="/users" element={<UsersContainer/>}/>
+                        <Route path="/login" element={<Login/>}/>
                     </Routes>
                 </div>
 
