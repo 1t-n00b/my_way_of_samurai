@@ -8,10 +8,14 @@ import {
     setUsers,
     toggleFollowingProgress,
 } from "../../redux/users-reducer";
-import {RootStateType} from "../../redux/store";
-import UsersClassComponent from "./UsersClassComponent";
 
-const mapStateToProps = (state: RootStateType) => {
+import UsersClassComponent from "./UsersClassComponent";
+import {AppStateType} from "../../redux/redux-store";
+import React from "react";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+
+const mapStateToProps = (state: AppStateType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -46,7 +50,19 @@ const mapStateToProps = (state: RootStateType) => {
 // }
 
 
-export default connect(mapStateToProps, {
+// export default connect(mapStateToProps, {
+//     setUsers,
+//     setCurrentPage,
+//     setIsFetching,
+//     toggleFollowingProgress,
+//     getUsers,
+//     acceptFollow,
+//     acceptUnfollow
+// })(UsersClassComponent);
+
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setIsFetching,
@@ -54,4 +70,4 @@ export default connect(mapStateToProps, {
     getUsers,
     acceptFollow,
     acceptUnfollow
-})(UsersClassComponent);
+}))(UsersClassComponent)

@@ -1,10 +1,9 @@
 import {FriendType} from "../App";
 
- type initialStateType = {
-    friends:FriendType[]
-}
+export type SidebarStateType = { friends: Array<FriendType> }
 
-let initialState:initialStateType =  {
+
+let initialState: SidebarStateType = {
     friends: [
         {
             id: 1,
@@ -27,9 +26,9 @@ let initialState:initialStateType =  {
     ]
 }
 
-const sidebarReducer = (state = initialState) => {
+const sidebarReducer = (state = initialState): SidebarStateType => {
     return state
-    }
+}
 
 
 export default sidebarReducer

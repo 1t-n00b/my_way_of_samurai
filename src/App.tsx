@@ -2,26 +2,14 @@ import NavBar from "./components/Navbar/NavBar";
 import {Route, Routes} from "react-router-dom";
 import "./App.css";
 import React from "react";
-import {ReduxStoreType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 
-export type MessageType = {
-    id: number
-    message: string
-}
-export type DialogType = {
-    id: number
-    name: string
-}
-export type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}
+
+
 export type FriendType = {
     id: number
     firstName: string
@@ -30,12 +18,12 @@ export type FriendType = {
 
 }
 
-export type AppType = {
-    store: ReduxStoreType,
-    // dispatch: (action: ActionsTypes) => void
-}
+// export type AppType = {
+//     store: AppStateType,
+//     // dispatch: (action: ActionsTypes) => void
+// }
 
-const App: React.FC<AppType> = () => {
+const App: React.FC = () => {
     // const state = props.store.getState();
 
     return (

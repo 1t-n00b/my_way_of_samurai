@@ -1,7 +1,8 @@
 import React from "react";
 import ProfileInfo from "./MyPosts/Posts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {ProfileType} from "../../redux/store";
+import {ProfileType} from "../../redux/profile_reducer";
+
 
 type ProfilePropsType = {
     // store: ReduxStoreType,
@@ -16,7 +17,7 @@ type ProfilePropsType = {
 }
 
 function Profile(props: ProfilePropsType) {
-
+        debugger
     return (
         <div>
             <ProfileInfo profile={props.profile}/>

@@ -1,5 +1,4 @@
-import {PostsType} from "../App";
-import {ActionsTypes, AddPostActionType, ChangeNewTextActionType, ProfileType, SET_USER_PROFILE_AT} from "./store";
+import {ActionsTypes, AddPostActionType, ChangeNewTextActionType, SET_USER_PROFILE_AT} from "./store";
 import {Dispatch} from "react";
 import {usersAPI} from "../api/api";
 
@@ -7,16 +6,50 @@ const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE"
 
-const initialState = {
+export type ProfileType = {
+    aboutMe: string,
+    contacts: {
+        facebook: string,
+        website: string,
+        vk: string,
+        twitter: string,
+        instagram: string,
+        youtube: string,
+        github: string,
+        mainLink: null
+    },
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    fullName: string,
+    userId: number,
+    photos: {
+        small: string,
+        large: string
+    }
+}
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+type ProfileStateType = {
+    profile:   ProfileType | null;
+    newPostText: string ;
+    posts:  Array<PostsType>
+}
+const initialState: ProfileStateType = {
+    profile: null ,
+    newPostText: "it-dich",
     posts: [
         {id: 1, message: "how are u", likesCount: 12},
         {id: 2, message: "first post", likesCount: 2}
     ],
-    newPostText: "it-dich",
-    profile: null
-}
 
-const profileReducer = (state = initialState, action: ActionsTypes) => {
+}
+//   { posts: Array<PostsType>, newPostText: string, profile: ProfileType }
+
+const profileReducer = (state = initialState, action: ActionsTypes): ProfileStateType => {
     let copyState = {...state};
     switch (action.type) {
         case ADD_POST:
@@ -67,8 +100,8 @@ export const setUserProfile = (profile: ProfileType): SET_USER_PROFILE_AT => {
         profile
     }
 }
-export const getUserProfile = (userID: number) => (dispatch: Dispatch<ActionsTypes>)=>{
-    return   usersAPI.getProfile(userID)
+export const getUserProfile = (userID: number) => (dispatch: Dispatch<ActionsTypes>) => {
+    return usersAPI.getProfile(userID)
         .then(response => {
             dispatch(setUserProfile(response.data))
         })

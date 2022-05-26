@@ -23,15 +23,7 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_FOLLOW_UNFOLLOW = "TOGGLE_FOLLOW_UNFOLLOW";
 
 export type UserType = {
-    // id: number,
-    // followed: boolean
-    // fullName: string,
-    // status: string,
-    // location: {
-    //     city: string,
-    //     country: string
-    // }
-    name: string,
+       name: string,
     id: number,
     uniqueUrlName: string,
     photos: {
@@ -48,7 +40,7 @@ export type UserSateType = {
     totalUsersCount: number
     currentPage: number,
     isFetching: boolean,
-    followingInProgress: [],
+    followingInProgress: Array<number>,
 };
 
 const initialState: UserSateType = {
@@ -72,7 +64,7 @@ const initialState: UserSateType = {
     followingInProgress: []
 }
 
-const usersReducer = (state = initialState, action: ActionsTypes) => {
+const usersReducer = (state = initialState, action: ActionsTypes):UserSateType => {
 
     switch (action.type) {
         // case FOLLOW:

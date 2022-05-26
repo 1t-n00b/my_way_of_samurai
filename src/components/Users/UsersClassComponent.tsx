@@ -12,7 +12,7 @@ type UsersPropsType = {
     currentPage: number,
     setCurrentPage: (currentPage: number) => void
     isFetching: boolean,
-    followingInProgress: []
+    followingInProgress: Array<number>
     toggleFollowingProgress: (isFetching: boolean, userID: number) => void
     getUsers: (currentPage: number, pageSize: number) => void,
     acceptFollow: (userID: number)=> void

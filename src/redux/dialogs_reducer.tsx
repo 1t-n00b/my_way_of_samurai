@@ -1,11 +1,23 @@
 import {ActionsTypes, SEND_MESSAGE, UpdateMessageBody} from "./store";
-import message from "../components/Dialogs/Message/Message";
 
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGES = "SEND-MESSAGE";
 
-let initialState = {
+export type MessageType = {
+    id: number
+    message: string
+}
+export type DialogType = {
+    id: number
+    name: string
+}
+export type DialogsStateType = {
+    dialogs: Array<DialogType>,
+    messages: Array<MessageType>,
+    newMessageBody: string
+}
+let initialState: DialogsStateType = {
     dialogs: [
         {id: 1, name: "Sergey"},
         {id: 2, name: "Ura"},
@@ -21,11 +33,11 @@ let initialState = {
         {id: 5, message: "Yo"}
     ],
     newMessageBody: "",
-
 }
 
-const dialogsReducer = (state = initialState, action: ActionsTypes) => {
-    let newState = {...state, message:[...state.messages]}
+
+const dialogsReducer = (state = initialState, action: ActionsTypes): DialogsStateType => {
+    let newState = {...state, message: [...state.messages]}
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             newState.newMessageBody = action.newMessageBody
@@ -33,7 +45,7 @@ const dialogsReducer = (state = initialState, action: ActionsTypes) => {
         case SEND_MESSAGES:
             let body = newState.newMessageBody;
             newState.newMessageBody = "";
-            newState.messages = [...state.messages,{id: 6, message: body}];
+            newState.messages = [...state.messages, {id: 6, message: body}];
             break;
     }
     return newState

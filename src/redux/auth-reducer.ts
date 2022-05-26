@@ -4,17 +4,24 @@ import {Dispatch} from "react";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 
-
-const initialState = {
+type AuthStateType = {
     data: {
-        id: null,
-        email: null,
-        login: null,
+        id:  number | null,
+        email:  string,
+        login:  string,
+    },
+    isAuth: boolean,
+}
+const initialState: AuthStateType = {
+    data: {
+        id: null ,
+        email: '',
+        login: '',
     },
     isAuth: false
 }
 
-const authReducer = (state = initialState, action: SET_AUTH_USER_DATA_AT) => {
+const authReducer = (state = initialState, action: SET_AUTH_USER_DATA_AT): AuthStateType => {
     switch (action.type) {
         case SET_AUTH_USER_DATA: {
             return {
@@ -38,12 +45,12 @@ export const setAuthUserDataAC = (id: number, email: string, login: string): SET
     }
 }
 
-export const getAuthUserData = () => (dispatch: Dispatch<ActionsTypes>)=> {
+export const getAuthUserData = () => (dispatch: Dispatch<ActionsTypes>) => {
     return authAPI.me()
         .then(response => {
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data
-               dispatch(setAuthUserDataAC(id, email, login))
+                dispatch(setAuthUserDataAC(id, email, login))
             }
         })
 }

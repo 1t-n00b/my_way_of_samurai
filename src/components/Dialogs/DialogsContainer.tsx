@@ -2,7 +2,9 @@ import React from "react";
 import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogs_reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {RootStateType} from "../../redux/store";
+import {AppStateType} from "../../redux/redux-store";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 type DialogsContainer = {
     // dialogs : Array<DialogType>
@@ -46,10 +48,10 @@ type DialogsContainer = {
 //
 // }
 
-let mapStateToProps = (state: RootStateType) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
+        // isAuth: state.auth.isAuth
     }
 }
 // let mapDispatchToProps = (dispatch: (arg0: { type: "UPDATE-NEW-MESSAGE-BODY" | "SEND-MESSAGE"; newMessageBody?: string; }) => void) => {
@@ -60,7 +62,10 @@ let mapStateToProps = (state: RootStateType) => {
 //     }
 // }
 
-const DialogsContainer = connect(mapStateToProps, {sendMessageAC,updateNewMessageBodyAC})(Dialogs)
+// const DialogsContainer = withAuthRedirect( connect(mapStateToProps, {sendMessageAC,updateNewMessageBodyAC})(Dialogs))
+// export default  DialogsContainer;
 
-
-export default DialogsContainer;
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {sendMessageAC,updateNewMessageBodyAC}),
+    withAuthRedirect
+)(Dialogs)

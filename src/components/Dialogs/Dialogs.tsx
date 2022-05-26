@@ -2,28 +2,19 @@ import React, {ChangeEvent} from "react";
 import Dial from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {DialogType, MessageType} from "../../App";
-import {Navigate} from "react-router-dom";
+import {DialogType, MessageType} from "../../redux/dialogs_reducer";
 
 type DialogsType = {
-    // dialogs : Array<DialogType>
-    // messages : Array<MessageType>
-    // state: {
-    //     dialogs: Array<DialogType>
-    //     messages: Array<MessageType>
-    //     newMessageBody: string
-    // }
     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
     sendMessageAC: () => void
     updateNewMessageBodyAC: (newMessageBody: string) => void
     isAuth: boolean
-    // dispatch: (action: ActionsTypes) => void
 }
 
 function Dialogs(props: DialogsType) {
     let state = props.dialogsPage
 
-    let dialogsElemets = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
     let messagesElements = state.messages.map(m => <Message message={m.message}/>);
     let newMessageBody = state.newMessageBody
 
@@ -35,11 +26,11 @@ function Dialogs(props: DialogsType) {
         props.updateNewMessageBodyAC(newMessageBody);
     }
 
-    if (!props.isAuth) return <Navigate to="/login"/>
+    // if (!props.isAuth) return <Navigate to="/login"/>
     return (
         <div className={Dial.dialogs}>
             <div className={Dial.dialogs_items}>
-                {dialogsElemets}
+                {dialogsElements}
             </div>
             <div className={Dial.messages}>
                 <div>{messagesElements}</div>

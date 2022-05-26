@@ -1,5 +1,6 @@
-import {DialogType, FriendType, MessageType, PostsType} from "../App";
+
 import {UserType} from "./users-reducer";
+import {ProfileType} from "./profile_reducer";
 /*import exp from "constants";
 
 export type StoreType = {
@@ -11,27 +12,27 @@ export type StoreType = {
 }*/
 
 
-export type ProfileType = {
-    aboutMe: string,
-    contacts: {
-        facebook: string,
-        website: string,
-        vk: string,
-        twitter: string,
-        instagram: string,
-        youtube: string,
-        github: string,
-        mainLink: null
-    },
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string,
-    fullName: string,
-    userId: number,
-    photos: {
-        small: string,
-        large: string
-    }
-}
+// export type ProfileType = {
+//     aboutMe: string,
+//     contacts: {
+//         facebook: string,
+//         website: string,
+//         vk: string,
+//         twitter: string,
+//         instagram: string,
+//         youtube: string,
+//         github: string,
+//         mainLink: null
+//     },
+//     lookingForAJob: boolean,
+//     lookingForAJobDescription: string,
+//     fullName: string,
+//     userId: number,
+//     photos: {
+//         small: string,
+//         large: string
+//     }
+// }
 export type AddPostActionType = {
     type: "ADD-POST",
 }
@@ -209,19 +210,19 @@ export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateM
 
 }*/
 
-export type RootStateType = {
-    profilePage: { posts: Array<PostsType>, newPostText: string, profile: ProfileType }
-    dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
-    sidebar: { friends: Array<FriendType> }
-    usersPage: { users: UserType[], pageSize: number, totalUsersCount: number, currentPage: number, isFetching: boolean, followingInProgress: [] }
-    auth: { data: {
-            id: number,
-            email: string,
-            login: string,
-        }
-        isAuth: false
-    }
-}
+// export type RootStateType = {
+//     profilePage: { posts: Array<PostsType>, newPostText: string, profile: ProfileType }
+//     dialogsPage: { dialogs: Array<DialogType>, messages: Array<MessageType>, newMessageBody: string }
+//     sidebar: { friends: Array<FriendType> }
+//     usersPage: { users: UserType[], pageSize: number, totalUsersCount: number, currentPage: number, isFetching: boolean, followingInProgress: [] }
+//     auth: { data: {
+//             id: number,
+//             email: string,
+//             login: string,
+//         }
+//         isAuth: false
+//     }
+// }
 
 // export default store
 

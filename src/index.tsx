@@ -12,7 +12,7 @@ import {Provider} from "react-redux";
         <BrowserRouter>
             <Provider store={store}>
                 <App
-                    store={store}
+                   // store={store}
                     /* dispatch={store.dispatch.bind(store)}*/
                 />
             </Provider>

@@ -2,7 +2,8 @@ import React from "react";
 import {addPostAC, changeNewTextAC} from "../../../redux/profile_reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
-import {AddPostActionType, ChangeNewTextActionType, RootStateType} from "../../../redux/store";
+import {AddPostActionType, ChangeNewTextActionType} from "../../../redux/store";
+import {AppStateType} from "../../../redux/redux-store";
 
 type MyPostsContainer = {
     // store: ReduxStoreType,
@@ -55,7 +56,7 @@ type MyPostsContainer = {
 //
 // }
 
-let mapStateToProps = (state: RootStateType) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         post: state.profilePage.posts,
         newPostText: state.profilePage.newPostText

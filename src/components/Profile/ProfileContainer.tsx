@@ -1,10 +1,12 @@
 import React, {JSXElementConstructor} from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile} from "../../redux/profile_reducer";
-import {ProfileType, RootStateType} from "../../redux/store";
-import {Navigate, Params, useLocation, useNavigate, useParams} from "react-router-dom";
+import {getUserProfile, ProfileType} from "../../redux/profile_reducer";
+import {Params, useLocation, useNavigate, useParams} from "react-router-dom";
 import {NavigateFunction} from "react-router";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {AppStateType} from "../../redux/redux-store";
+import { compose } from 'redux';
 
 
 type ProfilePropsType = {
@@ -15,7 +17,7 @@ type ProfilePropsType = {
         navigate: NavigateFunction,
         params: Params
     }
-    isAuth: boolean
+
 
 }
 
@@ -27,7 +29,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 
     render() {
-        if (!this.props.isAuth) return <Navigate to="/login"/>
+        // if (!this.props.isAuth) return <Navigate to="/login"/>
 
         return (
             <Profile profile={this.props.profile}/>
@@ -35,9 +37,9 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 }
 
-let mapStateToProps = (state: RootStateType) => ({
-    profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
+let mapStateToProps = (state: AppStateType) => ({
+    profile: state.profilePage.profile
+
 })
 export const withRouter = (Component: JSXElementConstructor<ProfilePropsType>): JSXElementConstructor<any> => {
     function ComponentWithRouterProp(props: any) {
@@ -57,4 +59,10 @@ export const withRouter = (Component: JSXElementConstructor<ProfilePropsType>): 
 }
 
 
-export default connect(mapStateToProps, {getUserProfile})(withRouter(ProfileContainer));
+// export default withAuthRedirect(connect(mapStateToProps, {getUserProfile})(withRouter(ProfileContainer)));
+
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, {getUserProfile}),
+    withRouter
+)(ProfileContainer)
