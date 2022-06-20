@@ -1,4 +1,3 @@
-
 import {UserType} from "./users-reducer";
 import {ProfileType} from "./profile_reducer";
 /*import exp from "constants";
@@ -92,14 +91,34 @@ export type SET_AUTH_USER_DATA_AT = {
     isAuth: boolean
 }
 export type TOGGLE_FOLLOW_UNFOLLOW_AT = {
-    type : "TOGGLE_FOLLOW_UNFOLLOW" ,
+    type: "TOGGLE_FOLLOW_UNFOLLOW",
     isFetching: boolean,
     userID: number
 }
+export type SET_STATUS_AT = {
+    type: "SET_STATUS",
+    status: string,
+}
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType | UpdateMessageBody |
-    SEND_MESSAGE | FollowAT | UnFollowAT | SET_USERS_AT | SET_FRIENDS | SET_CURRENT_PAGE_AT |
-    SET_TOTAL_COUNT_AT | SET_TOGGLE_IS_FETCHING | SET_USER_PROFILE_AT | SET_AUTH_USER_DATA_AT| Follow_UnFollowAT |TOGGLE_FOLLOW_UNFOLLOW_AT
+export type ActionsTypes =
+    AddPostActionType
+    | ChangeNewTextActionType
+    | UpdateMessageBody
+    |
+    SEND_MESSAGE
+    | FollowAT
+    | UnFollowAT
+    | SET_USERS_AT
+    | SET_FRIENDS
+    | SET_CURRENT_PAGE_AT
+    |
+    SET_TOTAL_COUNT_AT
+    | SET_TOGGLE_IS_FETCHING
+    | SET_USER_PROFILE_AT
+    | SET_AUTH_USER_DATA_AT
+    | Follow_UnFollowAT
+    | TOGGLE_FOLLOW_UNFOLLOW_AT
+|   SET_STATUS_AT
 /*
  let store: StoreType = {
     _state: {

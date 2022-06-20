@@ -13,14 +13,16 @@ type ProfilePropsType = {
     //     newPostText: string
     // },
     // dispatch: (action: ActionsTypes) => void
-    profile: ProfileType
+    profile: ProfileType,
+    status:string,
+    updateStatus: (status: string) => void,
 }
 
 function Profile(props: ProfilePropsType) {
-        debugger
+        // debugger
     return (
         <div>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <MyPostsContainer
                 // store={props.store}
                 //               post={props.profilePage.posts}
