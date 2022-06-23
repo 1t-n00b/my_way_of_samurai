@@ -31,12 +31,12 @@ const Users = (props: UsersPropsType) => {
     const unFollow = (id: number) => {
         props.acceptUnfollow(id)
     }
-    console.log(props.currentPage, pagesCount)
+
     return (
         <div>
             <div className={s.navigatorPage}>
                 {pages.map(p => {
-                    return <span onClick={() => {
+                    return <span key={p} onClick={() => {
                         props.onPageChanged(p)
 
                     }} className={props.currentPage === p ? s.selectedPage : ""}>{p}</span>

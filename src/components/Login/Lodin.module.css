@@ -1,0 +1,13 @@
+.loginBlock {
+    padding-top: 50px;
+    width: 320px;
+    margin: 0 auto;
+    color: white;
+}
+p{
+    color: white;
+}
+
+input {
+    background-color: white;
+}

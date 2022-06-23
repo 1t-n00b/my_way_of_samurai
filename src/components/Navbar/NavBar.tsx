@@ -34,7 +34,6 @@ function NavBar() {
             <div className={s.item}><a>Settings</a></div>
 
 
-
             <div className={s.friends_block}>
                 <h3 className={s.item}><a>Friends</a></h3>
                 <FriendsContainer/>

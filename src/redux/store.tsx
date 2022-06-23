@@ -1,5 +1,7 @@
 import {UserType} from "./users-reducer";
 import {ProfileType} from "./profile_reducer";
+import {setIsLoggedInAC} from "./auth-reducer";
+import {initializedSuccessAT} from "./app-reducer";
 /*import exp from "constants";
 
 export type StoreType = {
@@ -119,6 +121,7 @@ export type ActionsTypes =
     | Follow_UnFollowAT
     | TOGGLE_FOLLOW_UNFOLLOW_AT
 |   SET_STATUS_AT
+| ReturnType<typeof setIsLoggedInAC> | initializedSuccessAT
 /*
  let store: StoreType = {
     _state: {
