@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {
     acceptFollow,
     acceptUnfollow,
-    getUsers,
+    requestUsers,
     setCurrentPage,
     setIsFetching,
     setUsers,
@@ -14,15 +14,34 @@ import {AppStateType} from "../../redux/redux-store";
 import React from "react";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/users-selectors";
 
+// const mapStateToProps = (state: AppStateType) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
 const mapStateToProps = (state: AppStateType) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsers(state),
+        // users: getUsersSuperSelector(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 // const mapDispatchToProps = (dispatch: (arg0: { type: string; userID?: number; users?: UserType[]; }) => void) => {
@@ -63,11 +82,11 @@ const mapStateToProps = (state: AppStateType) => {
 export default compose<React.ComponentType>(
     withAuthRedirect,
     connect(mapStateToProps, {
-    setUsers,
-    setCurrentPage,
-    setIsFetching,
-    toggleFollowingProgress,
-    getUsers,
-    acceptFollow,
-    acceptUnfollow
-}))(UsersClassComponent)
+        setUsers,
+        setCurrentPage,
+        setIsFetching,
+        toggleFollowingProgress,
+        getUsers: requestUsers,
+        acceptFollow,
+        acceptUnfollow
+    }))(UsersClassComponent)

@@ -20,16 +20,33 @@ type ProfilePropsType = {
     updateStatus: (status: string) => void,
 }
 
-class ProfileContainer extends React.Component<ProfilePropsType> {
+class ProfileContainer extends React.Component<any> {
 
     componentDidMount() {
+        debugger
+        this.refreshProfile()
+    }
 
+    componentDidUpdate(prevProps: any, prevState: Readonly<{}>, snapshot?: any) {
+        debugger
+        if (prevProps.router.params.userID !== this.props.router.params.userID) {
+            this.refreshProfile()
+        }
+
+        // this.props.getUserProfile(23045)
+    }
+
+    refreshProfile() {
+        debugger
         let userID: number | undefined = Number(this.props.router.params.userID);
         if (!userID) {
-            userID=23045
+            userID = 23045
+            // return  <Navigate to="/profile/23045"/>;
         }
+        // this.forceUpdate()
         this.props.getUserProfile(userID)
         this.props.getStatus(userID);
+        console.log(userID)
     }
 
     render() {
@@ -43,7 +60,7 @@ let mapStateToProps = (state: AppStateType) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
 })
-export const withRouter = <T,>(Component: JSXElementConstructor<T>): JSXElementConstructor<any> => {
+export const withRouter = <T, >(Component: JSXElementConstructor<T>): JSXElementConstructor<any> => {
     function ComponentWithRouterProp(props: any) {
         let location = useLocation();
         let navigate = useNavigate();
