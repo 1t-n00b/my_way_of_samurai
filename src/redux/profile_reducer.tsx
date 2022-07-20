@@ -113,10 +113,8 @@ export const setStatusAC = (status: string): SET_STATUS_AT => {
     }
 }
 export const getUserProfile = (userID: number) => (dispatch: Dispatch<ActionsTypes>) => {
-    debugger
     return usersAPI.getProfile(userID)
         .then(response => {
-            debugger
             dispatch(setUserProfile(response.data))
         })
 }

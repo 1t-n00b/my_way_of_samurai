@@ -20,15 +20,13 @@ type ProfilePropsType = {
     updateStatus: (status: string) => void,
 }
 
-class ProfileContainer extends React.Component<any> {
+class ProfileContainer extends React.Component<ProfilePropsType> {
 
     componentDidMount() {
-        debugger
         this.refreshProfile()
     }
 
     componentDidUpdate(prevProps: any, prevState: Readonly<{}>, snapshot?: any) {
-        debugger
         if (prevProps.router.params.userID !== this.props.router.params.userID) {
             this.refreshProfile()
         }
@@ -37,7 +35,6 @@ class ProfileContainer extends React.Component<any> {
     }
 
     refreshProfile() {
-        debugger
         let userID: number | undefined = Number(this.props.router.params.userID);
         if (!userID) {
             userID = 23045
